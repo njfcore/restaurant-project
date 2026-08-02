@@ -1,0 +1,48 @@
+@media (max-width: 992px){
+
+    .header__toggle{
+        display: flex;
+        position: relative;
+        z-index: 1001;
+    }
+
+    .header__nav{
+
+        position: fixed;
+
+        top: 0;
+        right: 0;
+
+        width: 320px;
+        max-width: 85vw;
+
+        height: 100vh;
+
+        background: var(--color-dark);
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        gap: 2rem;
+
+        transform: translateX(100%);
+
+        transition: transform .35s ease;
+
+        z-index: 999;
+
+    }
+
+    .header__menu{
+
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+
+        text-align: center;
+
+    }
+
+}
