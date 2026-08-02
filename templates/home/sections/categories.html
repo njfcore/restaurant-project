@@ -1,0 +1,40 @@
+<section id="categories" class="section categories-section">
+
+    <div class="container">
+
+        <header class="section__header">
+            <span class="section__subtitle">Our Menu</span>
+            <h2 class="section__title">Explore Categories</h2>
+            <p class="section__description">
+                Browse our menu by category — from signature pizzas to delightful desserts.
+            </p>
+        </header>
+
+        <div class="categories-grid">
+
+            {% for category in categories %}
+            <article class="category-card">
+                <a class="category-link" href="/menu/categories/{{ category.slug }}/">
+                    {% if category.image %}
+                        <img src="{{ category.image.url }}" alt="{{ category.name }}" class="category-image">
+                    {% else %}
+                        <div class="category-image category-image--placeholder" aria-hidden="true"></div>
+                    {% endif %}
+
+                    <div class="category-body">
+                        <h3 class="category-title">{{ category.name }}</h3>
+                        {% if category.description %}
+                        <p class="category-desc">{{ category.description }}</p>
+                        {% endif %}
+                    </div>
+                </a>
+            </article>
+            {% empty %}
+            <p class="section__description">No categories available yet.</p>
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</section>
