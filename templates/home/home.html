@@ -6,6 +6,12 @@ Home | Bella Italia
 
 {% block content %}
 
-    {% include "home/sections/hero.html" %}
+<div class="home-wrapper">
+
+    {% include "includes/hero.html" %}
+
+    {% include "home/sections/categories.html" %}
+
+</div>
 
 {% endblock %}

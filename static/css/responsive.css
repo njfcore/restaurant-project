@@ -46,3 +46,33 @@
     }
 
 }
+
+/* ===========================
+      CATEGORIES
+=========================== */
+
+@media(max-width:992px){
+
+    .categories{
+
+        padding:5rem 0;
+
+    }
+
+}
+
+@media(max-width:768px){
+
+    .categories__grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .categories__header{
+
+        margin-bottom:3rem;
+
+    }
+
+}

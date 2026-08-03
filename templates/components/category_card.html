@@ -1,0 +1,50 @@
+{% load static %}
+<article class="category-card">
+
+                <div class="category-card__image">
+
+                    {% if category.image %}
+
+                    <img src="{{ category.image.url }}" alt="{{ category.name }}">
+
+                    {% else %}
+
+                    <img src="{% static 'images/categories/default.jpg' %}" alt="{{ category.name }}">
+
+                    {% endif %}
+
+                </div>
+
+                <div class="category-card__content">
+
+                    {% if category.is_featured %}
+
+                    <span class="category-card__badge">
+
+                        Chef's Choice
+
+                    </span>
+
+                    {% endif %}
+
+                    <h3>
+
+                        {{ category.name }}
+
+                    </h3>
+
+                    <p>
+
+                        {{ category.description }}
+
+                    </p>
+
+                    <a href="#">
+
+                        Explore
+
+                    </a>
+
+                </div>
+
+            </article>
