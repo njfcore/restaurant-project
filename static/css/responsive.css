@@ -120,3 +120,83 @@
     }
 
 }
+
+@media (max-width:992px){
+
+    .about-story__grid{
+
+        grid-template-columns:1fr;
+
+        gap:3rem;
+
+    }
+
+}
+
+@media (max-width:992px){
+
+    .about-features__grid{
+
+        grid-template-columns:repeat(2,1fr);
+
+    }
+
+}
+
+@media (max-width:600px){
+
+    .about-features__grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+}
+
+@media (max-width:992px){
+
+    .about-chef__grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+}
+
+@media (max-width:992px){
+
+    .about-stats__grid{
+
+        grid-template-columns:repeat(2,1fr);
+
+    }
+
+}
+
+@media (max-width:600px){
+
+    .about-stats__grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+}
+
+@media (max-width:768px){
+
+    .about-cta__box{
+
+        padding:3rem 2rem;
+
+    }
+
+    .about-cta__buttons{
+
+        flex-direction:column;
+
+        align-items:center;
+
+    }
+
+}
