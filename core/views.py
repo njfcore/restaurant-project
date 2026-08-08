@@ -47,3 +47,4 @@ def about_view(request):
             "restaurant": restaurant,
         },
     )
+

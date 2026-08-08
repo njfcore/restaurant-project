@@ -1,0 +1,203 @@
+{% extends "base.html" %}
+{% load static %}
+{% load menu_extras %}
+
+{% block title %}
+{{ food.name }} | Bella Italia
+{% endblock %}
+
+{% block content %}
+
+<!-- =====================================
+                HERO
+====================================== -->
+
+<section class="food-detail-hero">
+
+    <div class="food-detail-hero__overlay"></div>
+
+    <div class="container">
+
+        <div class="food-detail-hero__content">
+
+            <span class="food-detail-hero__subtitle">
+
+                AUTHENTIC ITALIAN CUISINE
+
+            </span>
+
+            <h1 class="food-detail-hero__title">
+
+                {{ food.name }}
+
+            </h1>
+
+            <div class="food-detail-hero__breadcrumb">
+
+                <a href="{% url 'home' %}">
+
+                    Home
+
+                </a>
+
+                <span>/</span>
+
+                <a href="{% url 'menu' %}">
+
+                    Menu
+
+                </a>
+
+                <span>/</span>
+
+                <span>
+
+                    {{ food.name }}
+
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =====================================
+            FOOD DETAILS
+====================================== -->
+
+<section class="food-detail">
+
+    <div class="container">
+
+        <div class="food-detail__wrapper">
+
+            <div class="food-detail__image">
+
+                {% if food.image %}
+
+                <img src="{{ food.image.url }}" alt="{{ food.name }}">
+
+                {% else %}
+
+                <img src="{% static 'images/foods/default.jpg' %}" alt="{{ food.name }}">
+
+                {% endif %}
+
+            </div>
+
+            <div class="food-detail__content">
+
+                <span class="food-detail__category">
+
+                    {{ food.category.name }}
+
+                </span>
+
+                <h2>
+
+                    {{ food.name }}
+
+                </h2>
+
+                <div class="food-detail__price">
+
+                    ${{ food.price }}
+
+                </div>
+
+                <p class="food-detail__description">
+
+                    {{ food.description }}
+
+                </p>
+
+                <div class="food-detail__meta">
+
+                    <div>
+
+                        <strong>Preparation</strong>
+
+                        <span>{{ food.preparation_time }} min</span>
+
+                    </div>
+
+                    <div>
+
+                        <strong>Calories</strong>
+
+                        <span>{{ food.calories }} kcal</span>
+
+                    </div>
+
+                </div>
+
+                <div class="food-detail__ingredients">
+
+                    <h3>
+
+                        Ingredients
+
+                    </h3>
+
+                    <div class="food-detail__ingredients-list">
+
+                        {% for ingredient in food.ingredients|split:"," %}
+
+                        <span class="food-detail__ingredient">
+
+                            {{ ingredient }}
+
+                        </span>
+
+                        {% endfor %}
+
+                    </div>
+
+                </div>
+
+                <a href="#" class="btn btn-primary">
+
+                    Reserve a Table
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =====================================
+            RELATED FOODS
+====================================== -->
+
+<section class="related-foods">
+
+    <div class="container">
+
+        <h2 class="section-title">
+
+            You May Also Like
+
+        </h2>
+
+        <div class="menu-foods__grid">
+
+            {% for food in related_foods %}
+
+            {% include "components/food_card.html" %}
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

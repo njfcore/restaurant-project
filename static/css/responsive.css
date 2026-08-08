@@ -200,3 +200,93 @@
     }
 
 }
+
+@media (max-width:768px){
+
+    .menu-hero{
+
+        min-height:55vh;
+
+    }
+
+}
+
+@media (max-width:768px){
+
+    .menu-filter__wrapper{
+
+        justify-content:flex-start;
+
+        overflow-x:auto;
+
+        flex-wrap:nowrap;
+
+        padding-bottom:.5rem;
+
+    }
+
+    .menu-filter__wrapper::-webkit-scrollbar{
+
+        display:none;
+
+    }
+
+}
+
+@media(max-width:992px){
+
+    .menu-foods__grid{
+
+        grid-template-columns:repeat(2,1fr);
+
+    }
+
+}
+
+@media(max-width:768px){
+
+    .menu-foods__grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+}
+
+@media(max-width:992px){
+
+    .food-detail__wrapper{
+
+        grid-template-columns:1fr;
+
+    }
+
+}
+
+@media(max-width:576px){
+
+    .pagination{
+
+        gap:.5rem;
+
+    }
+
+    .pagination__link{
+
+        width:40px;
+
+        height:40px;
+
+    }
+
+    .pagination__link--arrow{
+
+        min-width:auto;
+
+        padding:0 .9rem;
+
+        font-size:.85rem;
+
+    }
+
+}

@@ -1,0 +1,210 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+Menu | Bella Italia
+{% endblock %}
+
+{% block content %}
+
+<!-- =====================================
+                HERO
+====================================== -->
+
+<section class="menu-hero">
+
+    <div class="menu-hero__overlay"></div>
+
+    <div class="container">
+
+        <div class="menu-hero__content">
+
+            <span class="menu-hero__subtitle">
+
+                AUTHENTIC ITALIAN CUISINE
+
+            </span>
+
+            <h1 class="menu-hero__title">
+
+                Our Signature Menu
+
+            </h1>
+
+            <p class="menu-hero__text">
+
+                Explore handcrafted Italian dishes prepared with fresh ingredients,
+                traditional recipes and unforgettable flavors.
+
+            </p>
+
+            <div class="menu-hero__breadcrumb">
+
+                <a href="{% url 'home' %}">
+
+                    Home
+
+                </a>
+
+                <span>/</span>
+
+                <span>
+
+                    Menu
+
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =====================================
+            CATEGORY FILTER
+====================================== -->
+
+<section class="menu-filter">
+
+    <div class="container">
+
+        <div class="menu-filter__wrapper">
+
+            <a href="{% url 'menu' %}"
+                class="menu-filter__button {% if not selected_category %}menu-filter__button--active{% endif %}">
+
+                All
+
+            </a>
+
+            {% for category in categories %}
+
+            <a href="{% url 'menu' %}?category={{ category.slug }}"
+                class="menu-filter__button {% if selected_category == category.slug %}menu-filter__button--active{% endif %}">
+
+                {{ category.name }}
+
+            </a>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =====================================
+                FOODS
+====================================== -->
+
+<section class="menu-foods">
+
+    <div class="container">
+
+        {% if foods %}
+
+        <div class="menu-foods__grid">
+
+            {% for food in foods %}
+
+            {% include "components/food_card.html" %}
+
+            {% endfor %}
+
+        </div>
+
+        <!-- PAGINATION -->
+
+        {% if page_obj.has_other_pages %}
+
+        <nav class="pagination" aria-label="Menu pagination">
+
+            {% if page_obj.has_previous %}
+
+            <a href="?{% if selected_category %}category={{ selected_category }}&{% endif %}page={{ page_obj.previous_page_number }}"
+                class="pagination__link pagination__link--arrow">
+
+                ← Previous
+
+            </a>
+
+            {% endif %}
+
+
+            <div class="pagination__pages">
+
+                {% for page_number in page_obj.paginator.page_range %}
+
+                {% if page_number == page_obj.number %}
+
+                <span class="pagination__link pagination__link--active">
+
+                    {{ page_number }}
+
+                </span>
+
+                {% else %}
+
+                <a href="?{% if selected_category %}category={{ selected_category }}&{% endif %}page={{ page_number }}"
+                    class="pagination__link">
+
+                    {{ page_number }}
+
+                </a>
+
+                {% endif %}
+
+                {% endfor %}
+
+            </div>
+
+
+            {% if page_obj.has_next %}
+
+            <a href="?{% if selected_category %}category={{ selected_category }}&{% endif %}page={{ page_obj.next_page_number }}"
+                class="pagination__link pagination__link--arrow">
+
+                Next →
+
+            </a>
+
+            {% endif %}
+
+        </nav>
+
+        {% endif %}
+
+        {% else %}
+
+        <div class="menu-foods__empty">
+
+            <h2>
+
+                No dishes found
+
+            </h2>
+
+            <p>
+
+                There are currently no dishes available in this category.
+
+            </p>
+
+            <a href="{% url 'menu' %}" class="menu-foods__empty-button">
+
+                View All Dishes
+
+            </a>
+
+        </div>
+
+        {% endif %}
+
+    </div>
+
+</section>
+
+{% endblock %}

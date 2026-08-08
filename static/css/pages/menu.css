@@ -1,0 +1,309 @@
+/* ======================================
+                HERO
+====================================== */
+
+.menu-hero{
+
+    position:relative;
+
+    min-height:65vh;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    overflow:hidden;
+
+    background:
+        linear-gradient(
+            rgba(0,0,0,.72),
+            rgba(0,0,0,.72)
+        ),
+        url("/static/images/menu/hero.jpg");
+
+    background-size:cover;
+
+    background-position:center;
+
+    background-attachment:fixed;
+
+}
+
+.menu-hero__overlay{
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(201,162,39,.12),
+            transparent 70%
+        );
+
+}
+
+.menu-hero__content{
+
+    position:relative;
+
+    z-index:2;
+
+    max-width:850px;
+
+    text-align:center;
+
+    margin:auto;
+
+}
+
+.menu-hero__subtitle{
+
+    display:inline-block;
+
+    color:var(--color-primary);
+
+    letter-spacing:5px;
+
+    margin-bottom:1.2rem;
+
+}
+
+.menu-hero__title{
+
+    color:#fff;
+
+    font-size:clamp(3rem,7vw,5rem);
+
+    margin-bottom:1.5rem;
+
+}
+
+.menu-hero__text{
+
+    color:rgba(255,255,255,.82);
+
+    line-height:1.9;
+
+    font-size:1.1rem;
+
+    max-width:700px;
+
+    margin:auto;
+
+}
+
+.menu-hero__breadcrumb{
+
+    margin-top:3rem;
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:1rem;
+
+    color:rgba(255,255,255,.7);
+
+}
+
+.menu-hero__breadcrumb a{
+
+    color:var(--color-primary);
+
+    text-decoration:none;
+
+    transition:.3s;
+
+}
+
+.menu-hero__breadcrumb a:hover{
+
+    color:#fff;
+
+}
+
+/* ======================================
+        CATEGORY FILTER
+====================================== */
+
+.menu-filter{
+
+    padding:5rem 0 3rem;
+
+}
+
+.menu-filter__wrapper{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    flex-wrap:wrap;
+
+    gap:1rem;
+
+}
+
+.menu-filter__button{
+
+    background:transparent;
+
+    border:1px solid rgba(255,255,255,.12);
+
+    color:#fff;
+
+    padding:.9rem 2rem;
+
+    border-radius:999px;
+
+    cursor:pointer;
+
+    transition:.35s;
+
+    font-weight:500;
+
+    text-decoration:none;
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+}
+
+.menu-filter__button:hover{
+
+    background:var(--color-primary);
+
+    border-color:var(--color-primary);
+
+    color:#111;
+
+    transform:translateY(-2px);
+
+}
+
+.menu-filter__button--active{
+
+    background:var(--color-primary);
+
+    color:#111;
+
+    border-color:var(--color-primary);
+
+}
+
+/* ======================================
+            FOOD GRID
+====================================== */
+
+.menu-foods{
+
+    padding:2rem 0 6rem;
+
+}
+
+.menu-foods__grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:2rem;
+
+}
+
+/* ======================================
+            PAGINATION
+====================================== */
+
+.pagination{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:1rem;
+
+    margin-top:4rem;
+
+}
+
+.pagination__pages{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:.6rem;
+
+}
+
+.pagination__link{
+
+    width:44px;
+
+    height:44px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    border:1px solid rgba(255,255,255,.1);
+
+    border-radius:50%;
+
+    color:#fff;
+
+    text-decoration:none;
+
+    transition:.3s ease;
+
+}
+
+.pagination__link--active{
+
+    background:var(--color-primary);
+
+    border-color:var(--color-primary);
+
+    color:#111;
+
+    font-weight:700;
+
+}
+
+.pagination__link:hover{
+
+    background:var(--color-primary);
+
+    border-color:var(--color-primary);
+
+    color:#111;
+
+    transform:translateY(-3px);
+
+}
+
+.pagination__link--arrow{
+
+    width:auto;
+
+    min-width:110px;
+
+    padding:0 1.2rem;
+
+    border-radius:30px;
+
+}
