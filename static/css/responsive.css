@@ -290,3 +290,63 @@
     }
 
 }
+
+@media (max-width: 992px) {
+
+    .reservation__wrapper {
+
+        grid-template-columns: 1fr;
+
+        gap: 4rem;
+
+    }
+
+}
+
+
+@media (max-width: 576px) {
+
+    .reservation {
+
+        padding: 5rem 0;
+
+    }
+
+
+    .reservation__form-wrapper {
+
+        padding: 2rem 1.3rem;
+
+        border-radius: 18px;
+
+    }
+
+
+    .reservation-form {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+    .reservation-form__group--full {
+
+        grid-column: auto;
+
+    }
+
+
+    .reservation-form__submit {
+
+        grid-column: auto;
+
+    }
+
+
+    .reservation-hero {
+
+        min-height: 50vh;
+
+    }
+
+}

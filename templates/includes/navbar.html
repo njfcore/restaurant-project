@@ -62,7 +62,8 @@
                     </li>
 
                     <li class="header__item">
-                        <a href="#" class="header__link">
+                        <a href="{% url 'reservation' %}"
+                            class="header__link {% if request.resolver_match.url_name == 'reservation' %}header__link--active{% endif %}">
                             Reservation
                         </a>
                     </li>

@@ -99,6 +99,12 @@ class Restaurant(BaseModel):
         verbose_name="Awards",
     )
 
+    opening_hours = models.CharField(
+        max_length=100,
+        default="Monday - Sunday | 11:00 AM - 11:00 PM",
+        verbose_name="Opening Hours",
+    )
+
     class Meta:
 
         verbose_name = "Restaurant"
