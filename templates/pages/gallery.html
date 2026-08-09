@@ -1,0 +1,289 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}
+Gallery | Bella Italia
+{% endblock %}
+
+
+{% block content %}
+
+<!-- =====================================
+                GALLERY HERO
+====================================== -->
+
+<section class="gallery-hero">
+
+    <div class="gallery-hero__overlay"></div>
+
+    <div class="container">
+
+        <div class="gallery-hero__content">
+
+            <span class="gallery-hero__subtitle">
+                A GLIMPSE OF BELLA ITALIA
+            </span>
+
+            <h1 class="gallery-hero__title">
+                Our Gallery
+            </h1>
+
+            <p class="gallery-hero__text">
+                Discover the flavors, people and atmosphere
+                that make Bella Italia special.
+            </p>
+
+            <div class="gallery-hero__breadcrumb">
+
+                <a href="{% url 'home' %}">
+                    Home
+                </a>
+
+                <span>/</span>
+
+                <span>
+                    Gallery
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================
+                GALLERY SECTION
+====================================== -->
+
+<section class="gallery-section">
+
+    <div class="container">
+
+
+        <!-- =================================
+                SECTION HEADER
+        ================================== -->
+
+        <div class="gallery-section__header">
+
+            <span class="gallery-section__subtitle">
+                MOMENTS AT BELLA ITALIA
+            </span>
+
+            <h2 class="gallery-section__title">
+                Taste the Moment
+            </h2>
+
+            <p class="gallery-section__description">
+                From handcrafted dishes to unforgettable evenings,
+                take a look inside our world.
+            </p>
+
+        </div>
+
+
+        <!-- =================================
+                CATEGORY FILTER
+        ================================== -->
+
+        <div
+            class="gallery-filter"
+            role="navigation"
+            aria-label="Gallery categories">
+
+            <a
+                href="{% url 'gallery' %}"
+                class="
+                    gallery-filter__button
+                    {% if not active_category %}
+                        gallery-filter__button--active
+                    {% endif %}
+                ">
+
+                All
+
+            </a>
+
+
+            {% for value, label in categories %}
+
+                <a
+                    href="?category={{ value }}"
+                    class="
+                        gallery-filter__button
+                        {% if active_category == value %}
+                            gallery-filter__button--active
+                        {% endif %}
+                    ">
+
+                    {{ label }}
+
+                </a>
+
+            {% endfor %}
+
+        </div>
+
+
+        <!-- =================================
+                GALLERY GRID
+        ================================== -->
+
+        <div class="gallery-grid">
+
+            {% for image in images %}
+
+                <article
+                    class="gallery-card"
+                    data-category="{{ image.category }}">
+
+                    <button
+                        type="button"
+                        class="gallery-card__button"
+                        data-gallery-image="{{ image.image.url }}"
+                        data-gallery-title="{{ image.title }}"
+                        {% if image.description %}
+                            data-gallery-description="{{ image.description }}"
+                        {% endif %}
+                        aria-label="View {{ image.title }}">
+
+                        <img
+                            src="{{ image.image.url }}"
+                            alt="{{ image.title }}"
+                            class="gallery-card__image"
+                            loading="lazy">
+
+                        <div class="gallery-card__overlay">
+
+                            <div class="gallery-card__content">
+
+                                <span class="gallery-card__category">
+                                    {{ image.get_category_display }}
+                                </span>
+
+                                <h3 class="gallery-card__title">
+                                    {{ image.title }}
+                                </h3>
+
+                                <span
+                                    class="gallery-card__icon"
+                                    aria-hidden="true">
+
+                                    <i class="bi bi-arrows-fullscreen"></i>
+
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </button>
+
+                </article>
+
+            {% empty %}
+
+                <div class="gallery-empty">
+
+                    <div class="gallery-empty__icon">
+
+                        <i class="bi bi-images"></i>
+
+                    </div>
+
+                    <h3 class="gallery-empty__title">
+                        No Images Found
+                    </h3>
+
+                    <p class="gallery-empty__text">
+                        There are currently no gallery images
+                        available in this category.
+                    </p>
+
+                    {% if active_category %}
+
+                        <a
+                            href="{% url 'gallery' %}"
+                            class="gallery-empty__link">
+
+                            View All Images
+
+                            <i class="bi bi-arrow-right"></i>
+
+                        </a>
+
+                    {% endif %}
+
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================
+                GALLERY LIGHTBOX
+====================================== -->
+
+<div
+    class="gallery-lightbox"
+    id="galleryLightbox"
+    aria-hidden="true">
+
+    <div
+        class="gallery-lightbox__backdrop"
+        data-lightbox-close>
+    </div>
+
+
+    <div
+        class="gallery-lightbox__content"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Gallery image">
+
+
+        <button
+            type="button"
+            class="gallery-lightbox__close"
+            data-lightbox-close
+            aria-label="Close gallery">
+
+            <i class="bi bi-x-lg"></i>
+
+        </button>
+
+
+        <div class="gallery-lightbox__image-wrapper">
+
+            <img
+                src=""
+                alt=""
+                class="gallery-lightbox__image">
+
+        </div>
+
+
+        <div class="gallery-lightbox__info">
+
+            <span class="gallery-lightbox__category"></span>
+
+            <h3 class="gallery-lightbox__title"></h3>
+
+            <p class="gallery-lightbox__description"></p>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

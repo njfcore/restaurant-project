@@ -56,7 +56,8 @@
                     </li>
 
                     <li class="header__item">
-                        <a href="#" class="header__link">
+                        <a href="{% url 'gallery' %}"
+                            class="header__link {% if request.resolver_match.url_name == 'gallery' %}header__link--active{% endif %}">
                             Gallery
                         </a>
                     </li>
