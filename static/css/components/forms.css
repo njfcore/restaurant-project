@@ -1,0 +1,351 @@
+/* =========================================================
+   FORM COMPONENT
+========================================================= */
+
+
+/* =========================================================
+   FORM
+========================================================= */
+
+.form {
+    display: flex;
+    flex-direction: column;
+
+    gap: 20px;
+}
+
+
+/* =========================================================
+   FORM GROUP
+========================================================= */
+
+.form__group {
+    display: flex;
+    flex-direction: column;
+
+    gap: 8px;
+}
+
+
+/* =========================================================
+   FORM LABEL
+========================================================= */
+
+.form__label {
+    color: rgba(255, 255, 255, 0.82);
+
+    font-size: 0.82rem;
+    font-weight: 500;
+
+    line-height: 1.4;
+}
+
+
+/* =========================================================
+   FORM INPUTS
+========================================================= */
+
+.form__input,
+.form__textarea,
+.form__select {
+    width: 100%;
+
+    padding: 14px 16px;
+
+    color: #ffffff;
+
+    font-family: inherit;
+    font-size: 0.9rem;
+    line-height: 1.5;
+
+    background: #111111;
+
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    border-radius: 3px;
+
+    outline: none;
+
+    transition:
+        border-color 0.3s ease,
+        background 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+
+/* =========================================================
+   PLACEHOLDER
+========================================================= */
+
+.form__input::placeholder,
+.form__textarea::placeholder {
+    color: rgba(255, 255, 255, 0.32);
+
+    opacity: 1;
+}
+
+
+/* =========================================================
+   FOCUS
+========================================================= */
+
+.form__input:focus,
+.form__textarea:focus,
+.form__select:focus {
+
+    background: #141414;
+
+    border-color: rgba(201, 162, 39, 0.7);
+
+    box-shadow:
+        0 0 0 3px rgba(201, 162, 39, 0.08);
+}
+
+
+/* =========================================================
+   TEXTAREA
+========================================================= */
+
+.form__textarea {
+    min-height: 150px;
+
+    resize: vertical;
+}
+
+
+/* =========================================================
+   SELECT
+========================================================= */
+
+.form__select {
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   CHECKBOX
+========================================================= */
+
+.form__checkbox-wrapper {
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+}
+
+.form__checkbox {
+    width: 16px;
+    height: 16px;
+
+    accent-color: var(--color-primary);
+
+    cursor: pointer;
+}
+
+.form__checkbox-label {
+    color: rgba(255, 255, 255, 0.62);
+
+    font-size: 0.82rem;
+
+    line-height: 1.5;
+
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   FIELD ERROR
+========================================================= */
+
+.form__error {
+    display: flex;
+    flex-direction: column;
+
+    gap: 4px;
+
+    color: #e5a5a5;
+
+    font-size: 0.75rem;
+
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   GENERAL FORM ERROR
+========================================================= */
+
+.form__error--general {
+    padding: 12px 14px;
+
+    color: #e5a5a5;
+
+    background: rgba(180, 60, 60, 0.08);
+
+    border-left: 2px solid #b43c3c;
+}
+
+
+/* =========================================================
+   INVALID FIELD
+========================================================= */
+
+.form__input--error,
+.form__textarea--error,
+.form__select--error {
+
+    border-color: rgba(180, 60, 60, 0.7);
+}
+
+.form__input--error:focus,
+.form__textarea--error:focus,
+.form__select--error:focus {
+
+    border-color: rgba(180, 60, 60, 0.9);
+
+    box-shadow:
+        0 0 0 3px rgba(180, 60, 60, 0.08);
+}
+
+
+/* =========================================================
+   SUBMIT BUTTON
+========================================================= */
+
+.form__button {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 12px;
+
+    margin-top: 8px;
+
+    padding: 16px 24px;
+
+    color: #111111;
+
+    font-family: inherit;
+    font-size: 0.82rem;
+    font-weight: 700;
+
+    letter-spacing: 1px;
+    text-transform: uppercase;
+
+    background: var(--color-primary);
+
+    border: 1px solid var(--color-primary);
+    border-radius: 3px;
+
+    cursor: pointer;
+
+    transition:
+        background 0.3s ease,
+        color 0.3s ease,
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+
+/* =========================================================
+   SUBMIT BUTTON HOVER
+========================================================= */
+
+.form__button:hover {
+
+    color: #ffffff;
+
+    background: transparent;
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+
+/* =========================================================
+   BUTTON ICON
+========================================================= */
+
+.form__button i {
+    transition:
+        transform 0.3s ease;
+}
+
+.form__button:hover i {
+    transform: translateX(4px);
+}
+
+
+/* =========================================================
+   DISABLED BUTTON
+========================================================= */
+
+.form__button:disabled {
+
+    opacity: 0.55;
+
+    cursor: not-allowed;
+
+    transform: none;
+
+    box-shadow: none;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 768px) {
+
+    .form {
+        gap: 18px;
+    }
+
+    .form__input,
+    .form__textarea,
+    .form__select {
+        padding: 13px 14px;
+
+        font-size: 0.88rem;
+    }
+
+    .form__textarea {
+        min-height: 140px;
+    }
+
+    .form__button {
+        padding: 15px 20px;
+    }
+
+}
+
+
+@media (max-width: 480px) {
+
+    .form {
+        gap: 16px;
+    }
+
+    .form__label {
+        font-size: 0.78rem;
+    }
+
+    .form__input,
+    .form__textarea,
+    .form__select {
+        padding: 12px 13px;
+
+        font-size: 0.85rem;
+    }
+
+    .form__button {
+        padding: 14px 18px;
+
+        font-size: 0.76rem;
+    }
+
+}

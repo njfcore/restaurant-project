@@ -7,5 +7,6 @@ urlpatterns = [
     path("about/", about_view, name="about"),
     path("menu/", include("menu.urls")),
     path("reservation/", include("reservation.urls")),
+    path("contact/", include("contact.urls")),
     
 ]

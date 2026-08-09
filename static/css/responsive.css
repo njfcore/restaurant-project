@@ -350,3 +350,147 @@
     }
 
 }
+
+/* =========================================================
+   CONTACT
+========================================================= */
+
+@media (max-width: 992px) {
+
+    .contact-section {
+        padding: 90px 0;
+    }
+
+    .contact-section__grid {
+        grid-template-columns: 1fr;
+
+        gap: 60px;
+    }
+
+    .contact-info {
+        padding-top: 0;
+    }
+
+    .contact-form-wrapper {
+        padding: 35px;
+    }
+
+}
+
+
+@media (max-width: 768px) {
+
+    .contact-hero {
+        min-height: 450px;
+    }
+
+    .contact-hero__title {
+        font-size: clamp(2.5rem, 10vw, 4rem);
+    }
+
+    .contact-hero__text {
+        font-size: 0.9rem;
+    }
+
+    .contact-section {
+        padding: 75px 0;
+    }
+
+    .contact-section__header {
+        margin-bottom: 50px;
+    }
+
+    .contact-section__title {
+        font-size: 2.3rem;
+    }
+
+    .contact-form-wrapper {
+        padding: 28px 22px;
+    }
+
+    .contact-form-wrapper__title {
+        font-size: 1.7rem;
+    }
+
+    .contact-cta {
+        padding: 80px 0;
+    }
+
+}
+
+
+@media (max-width: 480px) {
+
+    .contact-hero {
+        min-height: 420px;
+    }
+
+    .contact-hero__subtitle {
+        font-size: 0.68rem;
+
+        letter-spacing: 2px;
+    }
+
+    .contact-hero__title {
+        font-size: 2.4rem;
+    }
+
+    .contact-hero__text {
+        font-size: 0.84rem;
+
+        line-height: 1.75;
+    }
+
+    .contact-hero__breadcrumb {
+        font-size: 0.8rem;
+    }
+
+    .contact-section {
+        padding: 65px 0;
+    }
+
+    .contact-section__title {
+        font-size: 2rem;
+    }
+
+    .contact-section__description {
+        font-size: 0.88rem;
+    }
+
+    .contact-info__item {
+        gap: 15px;
+
+        padding: 24px 0;
+    }
+
+    .contact-info__icon {
+        flex-basis: 45px;
+
+        width: 45px;
+        height: 45px;
+
+        font-size: 1rem;
+    }
+
+    .contact-info__title {
+        font-size: 1.1rem;
+    }
+
+    .contact-info__text,
+    .contact-info__link {
+        font-size: 0.84rem;
+    }
+
+    .contact-form-wrapper {
+        padding: 24px 18px;
+    }
+
+    .contact-cta {
+        padding: 70px 0;
+    }
+
+    .contact-cta__title {
+        font-size: 2rem;
+    }
+
+}

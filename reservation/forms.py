@@ -25,36 +25,42 @@ class ReservationForm(forms.ModelForm):
 
             "name": forms.TextInput(
                 attrs={
+                    "class": "form__input",
                     "placeholder": "Your Full Name",
                 }
             ),
 
             "email": forms.EmailInput(
                 attrs={
+                    "class": "form__input",
                     "placeholder": "Your Email Address",
                 }
             ),
 
             "phone": forms.TextInput(
                 attrs={
+                    "class": "form__input",
                     "placeholder": "Your Phone Number",
                 }
             ),
 
             "date": forms.DateInput(
                 attrs={
+                    "class": "form__input",
                     "type": "date",
                 }
             ),
 
             "time": forms.TimeInput(
                 attrs={
+                    "class": "form__input",
                     "type": "time",
                 }
             ),
 
             "guests": forms.NumberInput(
                 attrs={
+                    "class": "form__input",
                     "min": 1,
                     "max": 20,
                     "placeholder": "Number of Guests",
@@ -63,6 +69,7 @@ class ReservationForm(forms.ModelForm):
 
             "message": forms.Textarea(
                 attrs={
+                    "class": "form__textarea",
                     "placeholder": "Any special requests?",
                     "rows": 5,
                 }
