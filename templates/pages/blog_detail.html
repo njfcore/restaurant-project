@@ -1,0 +1,248 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}
+{{ post.title }} | Bella Italia
+{% endblock %}
+
+
+{% block content %}
+
+<!-- =====================================
+            BLOG DETAIL HERO
+====================================== -->
+
+<section class="blog-detail-hero">
+
+    <div class="container">
+
+        <div class="blog-detail-hero__content">
+
+            <div class="blog-detail-hero__breadcrumb">
+
+                <a href="{% url 'home' %}">
+                    Home
+                </a>
+
+                <span>/</span>
+
+                <a href="{% url 'blog:blog' %}">
+                    Blog
+                </a>
+
+                <span>/</span>
+
+                <span>
+                    {{ post.title }}
+                </span>
+
+            </div>
+
+
+            {% if post.category %}
+
+                <span class="blog-detail-hero__category">
+                    {{ post.category.name }}
+                </span>
+
+            {% endif %}
+
+
+            <h1 class="blog-detail-hero__title">
+                {{ post.title }}
+            </h1>
+
+
+            {% if post.excerpt %}
+
+                <p class="blog-detail-hero__excerpt">
+                    {{ post.excerpt }}
+                </p>
+
+            {% endif %}
+
+
+            <div class="blog-detail-hero__meta">
+
+                {% if post.author %}
+
+                    <span class="blog-detail-hero__meta-item">
+
+                        <i class="bi bi-person"></i>
+
+                        {{ post.author }}
+
+                    </span>
+
+                {% endif %}
+
+
+                {% if post.published_at %}
+
+                    <span class="blog-detail-hero__meta-separator">
+                        •
+                    </span>
+
+                    <span class="blog-detail-hero__meta-item">
+
+                        <i class="bi bi-calendar3"></i>
+
+                        {{ post.published_at|date:"F d, Y" }}
+
+                    </span>
+
+                {% endif %}
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================
+            BLOG DETAIL CONTENT
+====================================== -->
+
+<section class="blog-detail">
+
+    <div class="container">
+
+        <div class="blog-detail__layout">
+
+            <!-- =============================
+                    MAIN ARTICLE
+            ============================== -->
+
+            <article class="blog-detail__article">
+
+
+                {% if post.image %}
+
+                    <div class="blog-detail__featured-image">
+
+                        <img
+                            src="{{ post.image.url }}"
+                            alt="{{ post.title }}"
+                        >
+
+                    </div>
+
+                {% else %}
+
+                    <div class="blog-detail__featured-image">
+
+                        <img
+                            src="{% static 'images/blog/default.jpg' %}"
+                            alt="{{ post.title }}"
+                        >
+
+                    </div>
+
+                {% endif %}
+
+
+                <div class="blog-detail__body">
+
+                    {{ post.content|linebreaks }}
+
+                </div>
+
+
+                <!-- =============================
+                        ARTICLE FOOTER
+                ============================== -->
+
+                <div class="blog-detail__footer">
+
+                    <a
+                        href="{% url 'blog:blog' %}"
+                        class="blog-detail__back"
+                    >
+
+                        <i class="bi bi-arrow-left"></i>
+
+                        Back to Blog
+
+                    </a>
+
+                </div>
+
+            </article>
+
+
+            <!-- =============================
+                    SIDEBAR
+            ============================== -->
+
+            <aside class="blog-detail__sidebar">
+
+
+                <!-- CATEGORY -->
+
+                {% if post.category %}
+
+                    <div class="blog-detail__sidebar-card">
+
+                        <span class="blog-detail__sidebar-label">
+                            CATEGORY
+                        </span>
+
+                        <h3 class="blog-detail__sidebar-title">
+                            {{ post.category.name }}
+                        </h3>
+
+                        {% if post.category.description %}
+
+                            <p class="blog-detail__sidebar-text">
+                                {{ post.category.description }}
+                            </p>
+
+                        {% endif %}
+
+                    </div>
+
+                {% endif %}
+
+
+                <!-- JOURNAL CTA -->
+
+                <div class="blog-detail__sidebar-card blog-detail__sidebar-card--accent">
+
+                    <span class="blog-detail__sidebar-label">
+                        BELLA ITALIA
+                    </span>
+
+                    <h3 class="blog-detail__sidebar-title">
+                        Taste the Tradition
+                    </h3>
+
+                    <p class="blog-detail__sidebar-text">
+                        Discover authentic Italian flavors prepared with
+                        passion, fresh ingredients and timeless recipes.
+                    </p>
+
+                    <a
+                        href="{% url 'menu' %}"
+                        class="blog-detail__sidebar-button"
+                    >
+                        Explore Our Menu
+
+                        <i class="bi bi-arrow-right"></i>
+                    </a>
+
+                </div>
+
+
+            </aside>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}
