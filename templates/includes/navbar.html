@@ -95,7 +95,19 @@
 
             <div class="header__actions">
 
+                <!-- Account -->
 
+                <a href="{% if user.is_authenticated %}{% url 'account:profile' %}{% else %}{% url 'account:login' %}{% endif %}"
+                    class="header__account"
+                    aria-label="{% if user.is_authenticated %}My Profile{% else %}Sign In{% endif %}"
+                    title="{% if user.is_authenticated %}My Profile{% else %}Sign In{% endif %}">
+
+                    <i class="bi bi-person-circle"></i>
+
+                </a>
+
+
+                <!-- Mobile Toggle -->
 
                 <button class="header__toggle" type="button" aria-label="Toggle navigation" aria-expanded="false"
                     aria-controls="primary-navigation">

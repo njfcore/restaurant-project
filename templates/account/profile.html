@@ -1,0 +1,176 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+
+{% block title %}
+My Profile | Bella Italia
+{% endblock %}
+
+
+{% block extra_css %}
+
+<link
+    rel="stylesheet"
+    href="{% static 'css/pages/account.css' %}"
+>
+
+{% endblock %}
+
+
+{% block content %}
+
+<section class="account-page">
+
+    <div class="container">
+
+        <div class="account-page__wrapper">
+
+            <!-- ================================
+                    PAGE HEADER
+            ================================= -->
+
+            <div class="account-page__header">
+
+                <span class="account-page__subtitle">
+                    BELLA ITALIA
+                </span>
+
+                <h1 class="account-page__title">
+                    My Profile
+                </h1>
+
+                <p class="account-page__description">
+
+                    Welcome back,
+                    {{ user.first_name|default:user.username }}.
+
+                </p>
+
+            </div>
+
+
+            <!-- ================================
+                    PROFILE CARD
+            ================================= -->
+
+            <div class="profile-card">
+
+
+                <!-- AVATAR -->
+
+                <div class="profile-card__avatar">
+
+                    <i class="bi bi-person"></i>
+
+                </div>
+
+
+                <!-- PROFILE INFORMATION -->
+
+                <div class="profile-card__content">
+
+
+                    <!-- USERNAME -->
+
+                    <div class="profile-card__item">
+
+                        <span class="profile-card__label">
+                            Username
+                        </span>
+
+                        <span class="profile-card__value">
+                            {{ user.username }}
+                        </span>
+
+                    </div>
+
+
+                    <!-- FIRST NAME -->
+
+                    <div class="profile-card__item">
+
+                        <span class="profile-card__label">
+                            First Name
+                        </span>
+
+                        <span class="profile-card__value">
+                            {{ user.first_name|default:"—" }}
+                        </span>
+
+                    </div>
+
+
+                    <!-- LAST NAME -->
+
+                    <div class="profile-card__item">
+
+                        <span class="profile-card__label">
+                            Last Name
+                        </span>
+
+                        <span class="profile-card__value">
+                            {{ user.last_name|default:"—" }}
+                        </span>
+
+                    </div>
+
+
+                    <!-- EMAIL -->
+
+                    <div class="profile-card__item">
+
+                        <span class="profile-card__label">
+                            Email
+                        </span>
+
+                        <span class="profile-card__value">
+                            {{ user.email|default:"—" }}
+                        </span>
+
+                    </div>
+
+
+                    <!-- MEMBER SINCE -->
+
+                    <div class="profile-card__item">
+
+                        <span class="profile-card__label">
+                            Member Since
+                        </span>
+
+                        <span class="profile-card__value">
+                            {{ user.date_joined|date:"F d, Y" }}
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- PROFILE ACTION -->
+
+                <div class="profile-card__actions">
+
+                    <a
+                        href="{% url 'account:logout' %}"
+                        class="profile-card__logout"
+                    >
+
+                        <i class="bi bi-box-arrow-right"></i>
+
+                        Sign Out
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}
