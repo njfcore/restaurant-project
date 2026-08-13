@@ -10,10 +10,7 @@ My Profile | Bella Italia
 
 {% block extra_css %}
 
-<link
-    rel="stylesheet"
-    href="{% static 'css/pages/account.css' %}"
->
+<link rel="stylesheet" href="{% static 'css/pages/account.css' %}">
 
 {% endblock %}
 
@@ -152,10 +149,7 @@ My Profile | Bella Italia
 
                 <div class="profile-card__actions">
 
-                    <a
-                        href="{% url 'account:logout' %}"
-                        class="profile-card__logout"
-                    >
+                    <a href="{% url 'account:logout' %}" class="profile-card__logout">
 
                         <i class="bi bi-box-arrow-right"></i>
 
@@ -168,6 +162,116 @@ My Profile | Bella Italia
             </div>
 
         </div>
+
+        <section class="profile-orders">
+
+            <div class="profile-orders__header">
+
+                <div>
+                    <span class="profile-orders__subtitle">
+                        ORDER HISTORY
+                    </span>
+
+                    <h2 class="profile-orders__title">
+                        Recent Orders
+                    </h2>
+                </div>
+
+            </div>
+
+
+            {% if orders %}
+
+            <div class="profile-orders__list">
+
+                {% for order in orders %}
+
+                <article class="profile-order">
+
+                    <div class="profile-order__main">
+
+                        <div class="profile-order__number">
+
+                            <span>
+                                Order
+                            </span>
+
+                            <strong>
+                                #{{ order.id }}
+                            </strong>
+
+                        </div>
+
+
+                        <div class="profile-order__meta">
+
+                            <span>
+                                {{ order.created_at|date:"M d, Y" }}
+                            </span>
+
+                            <span class="profile-order__separator">
+                                •
+                            </span>
+
+                            <span>
+                                {{ order.get_order_type_display }}
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="profile-order__side">
+
+                        <span class="profile-order__status profile-order__status--{{ order.status }}">
+                            {{ order.get_status_display }}
+                        </span>
+
+
+                        <strong class="profile-order__price">
+                            ${{ order.total_price|floatformat:2 }}
+                        </strong>
+
+
+                        <a href="{% url 'order:order_detail' order.id %}" class="profile-order__link">
+                            View Order
+                            <i class="bi bi-arrow-right"></i>
+                        </a>
+
+                    </div>
+
+                </article>
+
+                {% endfor %}
+
+            </div>
+
+            {% else %}
+
+            <div class="profile-orders__empty">
+
+                <div class="profile-orders__empty-icon">
+                    <i class="bi bi-receipt"></i>
+                </div>
+
+                <h3>
+                    No Orders Yet
+                </h3>
+
+                <p>
+                    Your orders will appear here once you place your first order.
+                </p>
+
+                <a href="{% url 'menu' %}" class="profile-orders__empty-button">
+                    Explore Menu
+                </a>
+
+            </div>
+
+            {% endif %}
+
+        </section>
 
     </div>
 

@@ -1,0 +1,237 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+
+{% block title %}
+    Order #{{ order.id }} | {{ restaurant.name }}
+{% endblock %}
+
+
+{% block content %}
+
+<section class="order-detail-page">
+
+    <div class="container">
+
+        <!-- Header -->
+
+        <div class="order-detail-page__header">
+
+            <span class="order-detail-page__subtitle">
+                ORDER DETAILS
+            </span>
+
+            <h1 class="order-detail-page__title">
+                Order #{{ order.id }}
+            </h1>
+
+            <p class="order-detail-page__description">
+                Here is a summary of your order.
+            </p>
+
+        </div>
+
+
+        <div class="order-detail">
+
+            <!-- Order Information -->
+
+            <div class="order-detail__main">
+
+                <div class="order-detail__card">
+
+                    <div class="order-detail__card-header">
+
+                        <h2>
+                            Your Items
+                        </h2>
+
+                        <span class="order-detail__status order-detail__status--{{ order.status }}">
+                            {{ order.get_status_display }}
+                        </span>
+
+                    </div>
+
+
+                    <div class="order-detail__items">
+
+                        {% for item in order.items.all %}
+
+                            <div class="order-detail-item">
+
+                                <div class="order-detail-item__image">
+
+                                    {% if item.food.image %}
+
+                                        <img
+                                            src="{{ item.food.image.url }}"
+                                            alt="{{ item.food.name }}"
+                                        >
+
+                                    {% else %}
+
+                                        <img
+                                            src="{% static 'images/menu/default.jpg' %}"
+                                            alt="{{ item.food.name }}"
+                                        >
+
+                                    {% endif %}
+
+                                </div>
+
+
+                                <div class="order-detail-item__content">
+
+                                    <h3>
+                                        {{ item.food.name }}
+                                    </h3>
+
+                                    <span>
+                                        Qty: {{ item.quantity }}
+                                    </span>
+
+                                </div>
+
+
+                                <div class="order-detail-item__price">
+
+                                    ${{ item.total_price|floatformat:2 }}
+
+                                </div>
+
+                            </div>
+
+                        {% endfor %}
+
+                    </div>
+
+
+                    <div class="order-detail__total">
+
+                        <span>
+                            Total
+                        </span>
+
+                        <strong>
+                            ${{ order.total_price|floatformat:2 }}
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Order Information -->
+
+            <aside class="order-detail__sidebar">
+
+                <div class="order-detail__card">
+
+                    <div class="order-detail__card-header">
+
+                        <h2>
+                            Order Information
+                        </h2>
+
+                    </div>
+
+
+                    <div class="order-detail__info">
+
+                        <div class="order-detail__info-row">
+
+                            <span>
+                                Order Type
+                            </span>
+
+                            <strong>
+                                {{ order.get_order_type_display }}
+                            </strong>
+
+                        </div>
+
+
+                        <div class="order-detail__info-row">
+
+                            <span>
+                                Phone
+                            </span>
+
+                            <strong>
+                                {{ order.phone }}
+                            </strong>
+
+                        </div>
+
+
+                        {% if order.address %}
+
+                            <div class="order-detail__info-row">
+
+                                <span>
+                                    Address
+                                </span>
+
+                                <strong>
+                                    {{ order.address }}
+                                </strong>
+
+                            </div>
+
+                        {% endif %}
+
+
+                        {% if order.notes %}
+
+                            <div class="order-detail__info-row">
+
+                                <span>
+                                    Notes
+                                </span>
+
+                                <strong>
+                                    {{ order.notes }}
+                                </strong>
+
+                            </div>
+
+                        {% endif %}
+
+
+                        <div class="order-detail__info-row">
+
+                            <span>
+                                Date
+                            </span>
+
+                            <strong>
+                                {{ order.created_at|date:"M d, Y - H:i" }}
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <a
+                    href="{% url 'account:profile' %}"
+                    class="order-detail__back"
+                >
+                    <i class="bi bi-arrow-left"></i>
+                    Back to Profile
+                </a>
+
+            </aside>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

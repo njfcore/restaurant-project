@@ -454,3 +454,300 @@
     }
 
 }
+
+/* =========================================================
+   PROFILE ORDERS
+========================================================= */
+
+.profile-orders {
+    margin-top: 50px;
+}
+
+.profile-orders__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 25px;
+}
+
+.profile-orders__subtitle {
+    display: block;
+
+    margin-bottom: 8px;
+
+    color: var(--color-primary);
+
+    font-size: 0.7rem;
+    font-weight: 600;
+
+    letter-spacing: 2.3px;
+    text-transform: uppercase;
+}
+
+.profile-orders__title {
+    margin: 0;
+
+    color: #ffffff;
+
+    font-family: var(--font-heading);
+
+    font-size: 1.8rem;
+    font-weight: 500;
+}
+
+
+/* =========================================================
+   ORDER LIST
+========================================================= */
+
+.profile-orders__list {
+    display: flex;
+    flex-direction: column;
+
+    gap: 12px;
+}
+
+
+/* =========================================================
+   ORDER CARD
+========================================================= */
+
+.profile-order {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 25px;
+
+    padding: 22px 25px;
+
+    background: #171717;
+
+    border: 1px solid rgba(255, 255, 255, 0.07);
+
+    border-radius: 4px;
+
+    transition:
+        border-color 0.3s ease,
+        transform 0.3s ease,
+        background 0.3s ease;
+}
+
+.profile-order:hover {
+    background: #191919;
+
+    border-color: rgba(201, 162, 39, 0.3);
+
+    transform: translateY(-2px);
+}
+
+
+/* =========================================================
+   ORDER MAIN
+========================================================= */
+
+.profile-order__main {
+    min-width: 0;
+}
+
+.profile-order__number {
+    display: flex;
+    align-items: center;
+
+    gap: 8px;
+
+    margin-bottom: 7px;
+}
+
+.profile-order__number span {
+    color: rgba(255, 255, 255, 0.4);
+
+    font-size: 0.76rem;
+}
+
+.profile-order__number strong {
+    color: #ffffff;
+
+    font-size: 0.92rem;
+}
+
+.profile-order__meta {
+    display: flex;
+    align-items: center;
+
+    gap: 8px;
+
+    color: rgba(255, 255, 255, 0.4);
+
+    font-size: 0.72rem;
+}
+
+.profile-order__separator {
+    color: rgba(255, 255, 255, 0.2);
+}
+
+
+/* =========================================================
+   ORDER SIDE
+========================================================= */
+
+.profile-order__side {
+    display: flex;
+    align-items: center;
+
+    gap: 20px;
+
+    flex-shrink: 0;
+}
+
+.profile-order__status {
+    padding: 5px 10px;
+
+    font-size: 0.65rem;
+    font-weight: 600;
+
+    letter-spacing: 0.7px;
+
+    border: 1px solid rgba(255, 255, 255, 0.1);
+
+    border-radius: 2px;
+}
+
+.profile-order__status--pending {
+    color: #d8b86a;
+}
+
+.profile-order__status--confirmed {
+    color: #8fb8d8;
+}
+
+.profile-order__status--preparing {
+    color: #d49a67;
+}
+
+.profile-order__status--ready {
+    color: #9ac49a;
+}
+
+.profile-order__status--completed {
+    color: #86bd91;
+}
+
+.profile-order__status--cancelled {
+    color: #c98080;
+}
+
+
+.profile-order__price {
+    min-width: 70px;
+
+    color: var(--color-primary);
+
+    font-size: 0.9rem;
+
+    text-align: right;
+}
+
+
+.profile-order__link {
+    display: inline-flex;
+    align-items: center;
+
+    gap: 7px;
+
+    color: rgba(255, 255, 255, 0.55);
+
+    font-size: 0.72rem;
+
+    text-decoration: none;
+
+    white-space: nowrap;
+
+    transition:
+        color 0.3s ease,
+        gap 0.3s ease;
+}
+
+.profile-order__link:hover {
+    color: var(--color-primary);
+
+    gap: 10px;
+}
+
+
+/* =========================================================
+   EMPTY STATE
+========================================================= */
+
+.profile-orders__empty {
+    padding: 55px 25px;
+
+    text-align: center;
+
+    background: #171717;
+
+    border: 1px solid rgba(255, 255, 255, 0.07);
+
+    border-radius: 4px;
+}
+
+.profile-orders__empty-icon {
+    margin-bottom: 18px;
+
+    color: var(--color-primary);
+
+    font-size: 2rem;
+}
+
+.profile-orders__empty h3 {
+    margin: 0 0 10px;
+
+    color: #ffffff;
+
+    font-family: var(--font-heading);
+
+    font-size: 1.3rem;
+    font-weight: 500;
+}
+
+.profile-orders__empty p {
+    max-width: 420px;
+
+    margin: 0 auto 25px;
+
+    color: rgba(255, 255, 255, 0.45);
+
+    font-size: 0.8rem;
+    line-height: 1.7;
+}
+
+.profile-orders__empty-button {
+    display: inline-flex;
+
+    padding: 11px 20px;
+
+    color: #111111;
+
+    background: var(--color-primary);
+
+    font-size: 0.72rem;
+    font-weight: 600;
+
+    text-decoration: none;
+
+    border: 1px solid var(--color-primary);
+    border-radius: 3px;
+
+    transition:
+        background 0.3s ease,
+        color 0.3s ease;
+}
+
+.profile-orders__empty-button:hover {
+    color: #ffffff;
+
+    background: transparent;
+}
+
+

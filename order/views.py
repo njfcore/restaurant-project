@@ -1,9 +1,11 @@
 from django.contrib.auth.decorators import login_required
+from django.db import transaction
 from django.shortcuts import get_object_or_404, redirect, render
 
 from menu.models import Food
 
-from .models import Cart, CartItem
+from .forms import CheckoutForm
+from .models import Cart, CartItem, Order, OrderItem
 
 
 @login_required
@@ -115,3 +117,115 @@ def remove_from_cart(request, item_id):
     cart_item.delete()
 
     return redirect("order:cart")
+
+@login_required
+def checkout_view(request):
+
+    cart, created = Cart.objects.get_or_create(
+        user=request.user,
+    )
+
+    cart_items = cart.items.select_related(
+        "food",
+    )
+
+    if not cart_items.exists():
+        return redirect("order:cart")
+
+    total_price = sum(
+        item.food.price * item.quantity
+        for item in cart_items
+    )
+
+    if request.method == "POST":
+
+        form = CheckoutForm(request.POST)
+
+        if form.is_valid():
+
+            with transaction.atomic():
+
+                order = Order.objects.create(
+                    user=request.user,
+                    order_type=form.cleaned_data["order_type"],
+                    phone=form.cleaned_data["phone"],
+                    address=form.cleaned_data["address"],
+                    notes=form.cleaned_data["notes"],
+                    total_price=total_price,
+                )
+
+                for item in cart_items:
+
+                    OrderItem.objects.create(
+                        order=order,
+                        food=item.food,
+                        quantity=item.quantity,
+                        price=item.food.price,
+                    )
+
+                cart_items.delete()
+
+            return redirect(
+                "order:order_success",
+                order_id=order.id,
+            )
+
+    else:
+        form = CheckoutForm()
+
+    context = {
+        "cart": cart,
+        "cart_items": cart_items,
+        "total_price": total_price,
+        "form": form,
+    }
+
+    return render(
+        request,
+        "pages/checkout.html",
+        context,
+    )
+
+@login_required
+def order_success(request, order_id):
+
+    order = get_object_or_404(
+        Order,
+        id=order_id,
+        user=request.user,
+    )
+
+    context = {
+        "order": order,
+    }
+
+    return render(
+        request,
+        "pages/order_success.html",
+        context,
+    )
+
+
+@login_required
+def order_detail(request, order_id):
+
+    order = get_object_or_404(
+        Order.objects.prefetch_related(
+            "items__food",
+        ),
+        id=order_id,
+        user=request.user,
+    )
+
+    for item in order.items.all():
+        item.total_price = item.price * item.quantity
+
+    context = {
+        "order": order,
+    }
+
+    return render(
+        request,
+        "pages/order_detail.html",
+        context,
+    )

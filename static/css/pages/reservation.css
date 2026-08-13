@@ -549,3 +549,247 @@
 
 }
 
+/* =========================================================
+   CHECKOUT
+========================================================= */
+
+@media (max-width: 992px) {
+
+    .checkout {
+        grid-template-columns: 1fr;
+
+        gap: 25px;
+    }
+
+    .checkout__summary {
+        position: static;
+
+        order: -1;
+    }
+
+}
+
+
+@media (max-width: 768px) {
+
+    .checkout-page {
+        padding: 80px 0 90px;
+    }
+
+    .checkout-page__header {
+        margin-bottom: 45px;
+    }
+
+    .checkout__form-wrapper {
+        padding: 30px 25px;
+    }
+
+    .checkout__summary {
+        padding: 30px 25px;
+    }
+
+}
+
+
+@media (max-width: 576px) {
+
+    .checkout-page {
+        padding: 65px 0 75px;
+    }
+
+    .checkout-page__title {
+        font-size: 2.3rem;
+    }
+
+    .checkout-page__description {
+        font-size: 0.84rem;
+    }
+
+    .checkout__form-wrapper,
+    .checkout__summary {
+        padding: 25px 20px;
+    }
+
+    .checkout__form-title {
+        font-size: 1.65rem;
+    }
+
+    .checkout__summary-title {
+        font-size: 1.45rem;
+    }
+
+    .checkout-item {
+        grid-template-columns: 55px minmax(0, 1fr) auto;
+
+        gap: 10px;
+    }
+
+    .checkout-item__image {
+        width: 55px;
+        height: 55px;
+    }
+
+    .checkout-item__name {
+        font-size: 0.82rem;
+    }
+
+    .checkout-item__price {
+        font-size: 0.78rem;
+    }
+
+}
+
+/* =========================================================
+   ORDER TYPE SELECTOR
+========================================================= */
+
+@media (max-width: 768px) {
+
+    .order-type-selector {
+        grid-template-columns: 1fr;
+    }
+
+
+    .order-type-card__content {
+        min-height: auto;
+
+        flex-direction: row;
+
+        justify-content: flex-start;
+
+        text-align: left;
+
+        padding: 16px;
+    }
+
+
+    .order-type-card__text {
+        align-items: flex-start;
+    }
+
+}
+
+/* =========================================================
+   ORDERS PROFILE
+========================================================= */
+
+@media (max-width: 768px) {
+
+    .profile-order {
+        align-items: flex-start;
+
+        flex-direction: column;
+
+        gap: 18px;
+    }
+
+    .profile-order__side {
+        width: 100%;
+
+        justify-content: space-between;
+    }
+
+}
+
+
+@media (max-width: 480px) {
+
+    .profile-orders {
+        margin-top: 35px;
+    }
+
+    .profile-order {
+        padding: 18px;
+    }
+
+    .profile-order__side {
+        align-items: flex-start;
+
+        flex-direction: column;
+
+        gap: 12px;
+    }
+
+    .profile-order__price {
+        text-align: left;
+    }
+
+}
+
+/* =========================================================
+   RESPONSIVE ORDER.CSS
+========================================================= */
+
+@media (max-width: 992px) {
+
+    .order-detail {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+
+@media (max-width: 768px) {
+
+    .order-success-page {
+        padding: 70px 0 90px;
+    }
+
+    .order-success {
+        padding: 50px 25px;
+    }
+
+    .order-success__actions {
+        flex-direction: column;
+    }
+
+    .order-success__button {
+        width: 100%;
+    }
+
+    .order-detail-page {
+        padding: 75px 0 90px;
+    }
+
+    .order-detail__card {
+        padding: 25px;
+    }
+
+}
+
+
+@media (max-width: 480px) {
+
+    .order-success__icon {
+        width: 65px;
+        height: 65px;
+
+        font-size: 1.7rem;
+    }
+
+    .order-success__title {
+        font-size: 2rem;
+    }
+
+    .order-detail__card-header {
+        align-items: flex-start;
+
+        flex-direction: column;
+    }
+
+    .order-detail-item {
+        grid-template-columns: 55px minmax(0, 1fr);
+
+        gap: 12px;
+    }
+
+    .order-detail-item__image {
+        width: 55px;
+        height: 55px;
+    }
+
+    .order-detail-item__price {
+        grid-column: 2;
+    }
+
+}

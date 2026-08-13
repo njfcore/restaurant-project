@@ -95,7 +95,14 @@ def logout_view(request):
 @login_required
 def profile_view(request):
 
+    orders = request.user.orders.prefetch_related(
+        "items__food"
+    )[:5]
+
     return render(
         request,
         "account/profile.html",
+        {
+            "orders": orders,
+        },
     )

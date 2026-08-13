@@ -180,7 +180,7 @@ Your Cart | {{ restaurant.name }}
                 </div>
 
 
-                <a href="#" class="cart-summary__checkout">
+                <a href="{% url 'order:checkout' %}" class="cart-summary__checkout">
                     Proceed to Checkout
                     <i class="bi bi-arrow-right"></i>
                 </a>

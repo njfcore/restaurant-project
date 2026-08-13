@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+
+{% block title %}
+    Order Confirmed | {{ restaurant.name }}
+{% endblock %}
+
+
+{% block content %}
+
+<section class="order-success-page">
+
+    <div class="container">
+
+        <div class="order-success">
+
+            <div class="order-success__icon">
+                <i class="bi bi-check-lg"></i>
+            </div>
+
+
+            <span class="order-success__subtitle">
+                ORDER CONFIRMED
+            </span>
+
+
+            <h1 class="order-success__title">
+                Thank You For Your Order
+            </h1>
+
+
+            <p class="order-success__description">
+                Your order has been successfully placed.
+                We have received your order and will start
+                processing it shortly.
+            </p>
+
+
+            <div class="order-success__number">
+
+                <span>
+                    Order Number
+                </span>
+
+                <strong>
+                    #{{ order.id }}
+                </strong>
+
+            </div>
+
+
+            <div class="order-success__actions">
+
+                <a
+                    href="{% url 'order:order_detail' order.id %}"
+                    class="order-success__button order-success__button--primary"
+                >
+                    View Order
+                </a>
+
+
+                <a
+                    href="{% url 'menu' %}"
+                    class="order-success__button order-success__button--secondary"
+                >
+                    Continue Shopping
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

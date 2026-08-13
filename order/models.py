@@ -81,11 +81,43 @@ class Order(BaseModel):
         (STATUS_CANCELLED, "Cancelled"),
     ]
 
+    ORDER_TYPE_DINE_IN = "dine_in"
+    ORDER_TYPE_TAKEAWAY = "takeaway"
+    ORDER_TYPE_DELIVERY = "delivery"
+
+    ORDER_TYPE_CHOICES = [
+        (ORDER_TYPE_DINE_IN, "Dine In"),
+        (ORDER_TYPE_TAKEAWAY, "Takeaway"),
+        (ORDER_TYPE_DELIVERY, "Delivery"),
+]
+
     user = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         on_delete=models.PROTECT,
         related_name="orders",
         verbose_name="Customer",
+    )
+
+    order_type = models.CharField(
+        max_length=20,
+        choices=ORDER_TYPE_CHOICES,
+        default=ORDER_TYPE_DINE_IN,
+        verbose_name="Order Type",
+    )
+
+    phone = models.CharField(
+        max_length=20,
+        verbose_name="Phone Number",
+    )
+
+    address = models.TextField(
+        blank=True,
+        verbose_name="Delivery Address",
+    )
+
+    notes = models.TextField(
+        blank=True,
+        verbose_name="Order Notes",
     )
 
     status = models.CharField(
