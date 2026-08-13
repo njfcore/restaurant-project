@@ -95,6 +95,20 @@
 
             <div class="header__actions">
 
+                {% if user.is_authenticated %}
+
+                <a href="{% url 'order:cart' %}" class="header__cart" aria-label="Shopping cart">
+                    <i class="bi bi-cart3"></i>
+
+                    {% if cart_count > 0 %}
+                    <span class="header__cart-badge">
+                        {{ cart_count }}
+                    </span>
+                    {% endif %}
+                </a>
+
+                {% endif %}
+
                 <!-- Account -->
 
                 <a href="{% if user.is_authenticated %}{% url 'account:profile' %}{% else %}{% url 'account:login' %}{% endif %}"

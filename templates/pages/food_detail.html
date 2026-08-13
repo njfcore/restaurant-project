@@ -158,12 +158,15 @@
 
                 </div>
 
-                <a href="{% url 'reservation' %}" class="btn btn-primary">
+                <form action="{% url 'order:add_to_cart' food.id %}" method="post">
+                    {% csrf_token %}
 
-                    Reserve a Table
+                    <button type="submit" class="food-detail__cart-button">
+                        <i class="bi bi-cart-plus"></i>
+                        Add to Cart
+                    </button>
 
-                </a>
-
+                </form>
             </div>
 
         </div>

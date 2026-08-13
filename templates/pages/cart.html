@@ -1,0 +1,221 @@
+{% extends "base.html" %}
+
+{% block title %}
+Your Cart | {{ restaurant.name }}
+{% endblock %}
+
+
+{% block content %}
+
+<section class="cart-page">
+
+    <div class="container">
+
+        <div class="cart-page__header">
+
+            <span class="cart-page__subtitle">
+                YOUR ORDER
+            </span>
+
+            <h1 class="cart-page__title">
+                Your Shopping Cart
+            </h1>
+
+            <p class="cart-page__description">
+                Review your selected dishes before continuing to checkout.
+            </p>
+
+        </div>
+
+
+        {% if cart_items %}
+
+        <div class="cart-page__content">
+
+            <div class="cart-page__items">
+
+                {% for item in cart_items %}
+
+                <article class="cart-item">
+
+                    <div class="cart-item__image">
+
+                        {% if item.food.image %}
+
+                        <img src="{{ item.food.image.url }}" alt="{{ item.food.name }}">
+
+                        {% else %}
+
+                        <img src="/static/images/menu/default.jpg" alt="{{ item.food.name }}">
+
+                        {% endif %}
+
+                    </div>
+
+
+                    <div class="cart-item__details">
+
+                        <h2 class="cart-item__name">
+                            {{ item.food.name }}
+                        </h2>
+
+                        {% if item.food.short_description %}
+
+                        <p class="cart-item__description">
+                            {{ item.food.short_description }}
+                        </p>
+
+                        {% endif %}
+
+                        <span class="cart-item__price">
+                            ${{ item.food.price }}
+                        </span>
+
+                    </div>
+
+
+                    <div class="cart-item__quantity">
+
+                        <span class="cart-item__quantity-label">
+                            Quantity
+                        </span>
+
+                        <form action="{% url 'order:update_cart' item.id %}" method="post"
+                            class="cart-item__quantity-form">
+
+                            {% csrf_token %}
+
+                            <button type="submit" name="quantity" value="{{ item.quantity|add:'-1' }}"
+                                class="cart-item__quantity-button" aria-label="Decrease quantity">
+                                <i class="bi bi-dash"></i>
+                            </button>
+
+
+                            <span class="cart-item__quantity-value">
+                                {{ item.quantity }}
+                            </span>
+
+
+                            <button type="submit" name="quantity" value="{{ item.quantity|add:'1' }}"
+                                class="cart-item__quantity-button" aria-label="Increase quantity">
+                                <i class="bi bi-plus"></i>
+                            </button>
+
+                        </form>
+
+                    </div>
+
+                    <div class="cart-item__remove">
+
+                        <form action="{% url 'order:remove_from_cart' item.id %}" method="post">
+
+                            {% csrf_token %}
+
+                            <button type="submit" class="cart-item__remove-button">
+                                <i class="bi bi-trash3"></i>
+                                Remove
+                            </button>
+
+                        </form>
+
+                    </div>
+
+
+                    <div class="cart-item__total">
+
+                        <span class="cart-item__total-label">
+                            Total
+                        </span>
+
+                        <span class="cart-item__total-value">
+                            ${{ item.total_price|floatformat:2 }}
+                        </span>
+
+                    </div>
+
+                </article>
+
+                {% endfor %}
+
+            </div>
+
+
+            <aside class="cart-summary">
+
+                <span class="cart-summary__subtitle">
+                    ORDER SUMMARY
+                </span>
+
+                <h2 class="cart-summary__title">
+                    Your Order
+                </h2>
+
+
+                <div class="cart-summary__row">
+
+                    <span>
+                        Items
+                    </span>
+
+                    <span>
+                        {{ cart_items|length }}
+                    </span>
+
+                </div>
+
+
+                <div class="cart-summary__divider"></div>
+
+
+                <div class="cart-summary__total">
+
+                    <span>
+                        Total
+                    </span>
+
+                    <strong>
+                        ${{ total_price|floatformat:2 }}
+                    </strong>
+
+                </div>
+
+
+                <a href="#" class="cart-summary__checkout">
+                    Proceed to Checkout
+                    <i class="bi bi-arrow-right"></i>
+                </a>
+
+            </aside>
+
+        </div>
+
+        {% else %}
+
+        <div class="cart-empty">
+
+            <div class="cart-empty__icon">
+                <i class="bi bi-cart-x"></i>
+            </div>
+
+            <h2 class="cart-empty__title">
+                Your Cart Is Empty
+            </h2>
+
+            <p class="cart-empty__description">
+                You haven't added any dishes to your cart yet.
+            </p>
+
+            <a href="{% url 'menu' %}" class="cart-empty__button">
+                Explore Our Menu
+                <i class="bi bi-arrow-right"></i>
+            </a>
+
+        </div>
+
+        {% endif %}
+
+    </div>
+
+</section>
+
+{% endblock %}
