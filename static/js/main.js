@@ -117,3 +117,75 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
 });
+
+// document.addEventListener("DOMContentLoaded", function () {
+
+//     const starRating = document.querySelector(".star-rating");
+
+//     if (!starRating) {
+//         console.log("Star rating element not found.");
+//         return;
+//     }
+
+//     const stars = starRating.querySelectorAll(".star-rating__star");
+//     const ratingInput = document.querySelector("#id_rating");
+
+//     if (!ratingInput) {
+//         console.log("Rating input not found.");
+//         return;
+//     }
+
+//     console.log("Star rating initialized.");
+
+//     function updateStars(value) {
+
+//         stars.forEach(function (star) {
+
+//             const starValue = Number(star.dataset.value);
+
+//             if (starValue <= value) {
+//                 star.classList.add("is-active");
+//             } else {
+//                 star.classList.remove("is-active");
+//             }
+
+//         });
+//     }
+
+//     stars.forEach(function (star) {
+
+//         star.addEventListener("mouseenter", function () {
+
+//             const value = Number(star.dataset.value);
+
+//             updateStars(value);
+
+//         });
+
+//         star.addEventListener("click", function () {
+
+//             const value = Number(star.dataset.value);
+
+//             ratingInput.value = value;
+
+//             updateStars(value);
+
+//             console.log("Selected rating:", value);
+
+//         });
+
+//     });
+
+//     starRating.addEventListener("mouseleave", function () {
+
+//         const currentValue = Number(ratingInput.value) || 0;
+
+//         updateStars(currentValue);
+
+//     });
+
+//     const initialValue = Number(ratingInput.value) || 0;
+
+//     updateStars(initialValue);
+
+// });

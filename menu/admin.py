@@ -51,6 +51,7 @@ class CategoryAdmin(admin.ModelAdmin):
 @admin.register(Food)
 class FoodAdmin(admin.ModelAdmin):
     list_display = (
+        "id",
         "image_preview",
         "name",
         "category",

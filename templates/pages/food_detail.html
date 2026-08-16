@@ -203,4 +203,177 @@
 
 </section>
 
+<!-- Reviews Section -->
+<section class="food-reviews">
+
+    <div class="container">
+
+        <div class="food-reviews__header">
+
+            <div>
+                <span class="food-reviews__eyebrow">
+                    CUSTOMER REVIEWS
+                </span>
+
+                <h2 class="food-reviews__title">
+                    What Our Guests Say
+                </h2>
+            </div>
+
+
+            {% if review_count %}
+            <div class="food-reviews__summary">
+
+                <div class="food-reviews__rating">
+
+                    <span class="food-reviews__rating-value">
+                        {{ average_rating|floatformat:1 }}
+                    </span>
+
+                    <span class="food-reviews__rating-star">
+                        ★
+                    </span>
+
+                </div>
+
+                <span class="food-reviews__count">
+                    Based on {{ review_count }} review{{ review_count|pluralize }}
+                </span>
+
+            </div>
+            {% endif %}
+
+            <div class="food-reviews__actions">
+
+                {% if user.is_authenticated %}
+
+                {% if user_review %}
+
+                <a href="{% url 'review:edit' food.id %}" class="food-reviews__action food-reviews__action--secondary">
+                    <i class="bi bi-pencil-square"></i>
+                    Edit Your Review
+                </a>
+
+                {% elif can_review %}
+
+                <a href="{% url 'review:create' food.id %}" class="food-reviews__action food-reviews__action--primary">
+                    <i class="bi bi-star"></i>
+                    Write a Review
+                </a>
+
+                {% endif %}
+
+                {% else %}
+
+                <a href="{% url 'account:login' %}?next={{ request.path }}"
+                    class="food-reviews__action food-reviews__action--secondary">
+                    <i class="bi bi-box-arrow-in-right"></i>
+                    Login to Review
+                </a>
+
+                {% endif %}
+
+            </div>
+
+        </div>
+
+
+        {% if reviews %}
+
+        <div class="food-reviews__list">
+
+            {% for review in reviews %}
+
+            <article class="review-item">
+
+                <div class="review-item__header">
+
+                    <div class="review-item__user">
+
+                        <div class="review-item__avatar">
+                            {{ review.user.username|first|upper }}
+                        </div>
+
+                        <div class="review-item__user-info">
+
+                            <h3 class="review-item__username">
+                                {{ review.user.get_full_name|default:review.user.username }}
+                            </h3>
+
+                            <span class="review-item__date">
+                                {{ review.created_at|date:"F d, Y" }}
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="review-item__rating">
+
+                        {% for star in "12345" %}
+                        {% if forloop.counter <= review.rating %} <span
+                            class="review-item__star review-item__star--active">
+                            ★
+                            </span>
+                            {% else %}
+                            <span class="review-item__star">
+                                ☆
+                            </span>
+                            {% endif %}
+                            {% endfor %}
+
+                    </div>
+
+                </div>
+
+
+                <div class="review-item__content">
+
+                    <p>
+                        {{ review.comment }}
+                    </p>
+
+                </div>
+
+
+                <div class="review-item__footer">
+
+                    <span class="review-item__verified">
+                        <i class="bi bi-patch-check-fill"></i>
+                        Verified Purchase
+                    </span>
+
+                </div>
+
+            </article>
+
+            {% endfor %}
+
+        </div>
+
+        {% else %}
+
+        <div class="food-reviews__empty">
+
+            <div class="food-reviews__empty-icon">
+                <i class="bi bi-chat-square-text"></i>
+            </div>
+
+            <h3>
+                No Reviews Yet
+            </h3>
+
+            <p>
+                Be the first to share your experience with this dish.
+            </p>
+
+        </div>
+
+        {% endif %}
+
+    </div>
+
+</section>
+
 {% endblock %}

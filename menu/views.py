@@ -1,8 +1,12 @@
 from django.shortcuts import get_object_or_404
 from django.shortcuts import render
+from django.db.models import Avg
 from django.core.paginator import Paginator
 
 from .models import Category, Food
+from review.models import Review
+from review.services import has_completed_order
+
 
 def menu_view(request):
 
@@ -75,11 +79,51 @@ def food_detail_view(request, slug):
         id=food.id,
     )[:4]
 
+    reviews = (
+        Review.objects
+        .filter(
+            food=food,
+            is_approved=True,
+        )
+        .select_related("user")
+        .order_by("-created_at")
+    )
+
+    review_stats = reviews.aggregate(
+        average_rating=Avg("rating"),
+    )
+
+    user_review = None
+    can_review = False
+
+    if request.user.is_authenticated:
+
+        user_review = Review.objects.filter(
+            user=request.user,
+            food=food,
+        ).first()
+
+        if not user_review:
+            can_review = has_completed_order(
+                request.user,
+                food,
+            )
+
     context = {
 
         "food": food,
 
         "related_foods": related_foods,
+
+        "reviews": reviews,
+
+        "average_rating": review_stats["average_rating"],
+
+        "review_count": reviews.count(),
+
+        "user_review": user_review,
+
+        "can_review": can_review,
 
     }
 

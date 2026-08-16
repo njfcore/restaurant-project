@@ -872,3 +872,196 @@
         height: 38px;
     }
 }
+
+
+/* =========================================================
+   REVIEW Responsive
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+    .review-page {
+        padding: 75px 0;
+    }
+
+    .review-page__header {
+        margin-bottom: 35px;
+    }
+
+    .review-page__title {
+        font-size: 2.2rem;
+    }
+
+    .review-card__food {
+        padding: 22px;
+    }
+
+    .review-card__food-image {
+        width: 90px;
+        height: 90px;
+
+        flex-basis: 90px;
+    }
+
+    .review-card__food-name {
+        font-size: 1.3rem;
+    }
+
+    .review-form {
+        padding: 30px 24px;
+    }
+
+    .review-form__actions {
+        flex-direction: column-reverse;
+        align-items: stretch;
+    }
+
+    .review-form__button {
+        width: 100%;
+    }
+}
+
+
+@media (max-width: 480px) {
+
+    .review-page {
+        padding: 55px 0;
+    }
+
+    .review-page__title {
+        font-size: 1.9rem;
+    }
+
+    .review-page__description {
+        font-size: 0.9rem;
+    }
+
+    .review-card__food {
+        align-items: flex-start;
+        gap: 16px;
+
+        padding: 18px;
+    }
+
+    .review-card__food-image {
+        width: 75px;
+        height: 75px;
+
+        flex-basis: 75px;
+
+        border-radius: 10px;
+    }
+
+    .review-card__food-name {
+        font-size: 1.1rem;
+    }
+
+    .review-card__food-description {
+        display: none;
+    }
+
+    .review-form {
+        padding: 25px 18px 28px;
+    }
+
+    .review-form__group {
+        margin-bottom: 23px;
+    }
+}
+
+/* =========================================================
+   Food Detail Reviews
+   ========================================================= */
+
+   
+@media (max-width: 900px) {
+
+    .food-reviews__list {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+@media (max-width: 768px) {
+
+    .food-reviews {
+        padding: 75px 0;
+    }
+
+    .food-reviews__header {
+        align-items: flex-start;
+        flex-direction: column;
+
+        margin-bottom: 35px;
+    }
+
+    .food-reviews__summary {
+        align-items: flex-start;
+    }
+
+    .review-item {
+        padding: 23px;
+    }
+}
+
+
+@media (max-width: 480px) {
+
+    .food-reviews {
+        padding: 60px 0;
+    }
+
+    .food-reviews__title {
+        font-size: 1.8rem;
+    }
+
+    .review-item__header {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .review-item__rating {
+        order: -1;
+    }
+
+    .review-item__content p {
+        font-size: 0.88rem;
+    }
+}
+
+/* =========================================================
+   Review Actions
+   ========================================================= */
+
+
+@media (max-width: 768px) {
+
+    .food-reviews__header {
+        position: relative;
+    }
+
+    .food-reviews__actions {
+        width: 100%;
+
+        justify-content: flex-start;
+    }
+
+    .food-reviews__action {
+        width: 100%;
+    }
+}
+
+/* =========================================================
+   Interactive Star Rating
+   ========================================================= */
+
+   @media (max-width: 480px) {
+
+    .star-rating {
+        gap: 4px;
+    }
+
+    .star-rating__star {
+        font-size: 1.7rem;
+    }
+}
