@@ -1,0 +1,88 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Page Not Found | {{ restaurant.name }}</title>
+
+    <link
+        rel="stylesheet"
+        href="{% static 'css/base.css' %}"
+    >
+
+    <link
+        rel="stylesheet"
+        href="{% static 'css/pages/error.css' %}"
+    >
+
+</head>
+
+
+<body>
+
+    <main class="error-page">
+
+        <div class="container">
+
+            <section class="error-page__content">
+
+                <span class="error-page__code">
+                    404
+                </span>
+
+
+                <span class="error-page__subtitle">
+                    PAGE NOT FOUND
+                </span>
+
+
+                <h1 class="error-page__title">
+                    Oops! This Page Got Lost in the Kitchen.
+                </h1>
+
+
+                <p class="error-page__description">
+                    The page you're looking for doesn't exist,
+                    may have been moved, or is temporarily unavailable.
+                </p>
+
+
+                <div class="error-page__actions">
+
+                    <a
+                        href="{% url 'home' %}"
+                        class="error-page__button error-page__button--primary"
+                    >
+                        <!-- <i class="bi bi-house"></i> -->
+                        Back to Home
+                    </a>
+
+
+                    <a
+                        href="{% url 'menu' %}"
+                        class="error-page__button error-page__button--secondary"
+                    >
+                        <!-- <i class="bi bi-egg-fried"></i> -->
+                        Explore Menu
+                    </a>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </main>
+
+</body>
+
+</html>

@@ -19,6 +19,8 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 
+
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("", include("core.urls")),
@@ -32,3 +34,7 @@ if settings.DEBUG:
         settings.MEDIA_URL,
         document_root=settings.MEDIA_ROOT,
     )
+
+handler404 = "core.views.custom_404"
+handler403 = "core.views.custom_403"
+handler500 = "core.views.custom_500"    

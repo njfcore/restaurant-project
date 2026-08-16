@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.core.exceptions import PermissionDenied
 
 from menu.models import Category, Food
 from core.models import Restaurant
@@ -48,3 +49,25 @@ def about_view(request):
         },
     )
 
+def custom_404(request, exception):
+    return render(
+        request,
+        "errors/404.html",
+        status=404,
+    )
+
+
+def custom_403(request, exception):
+    return render(
+        request,
+        "errors/403.html",
+        status=403,
+    )
+
+
+def custom_500(request):
+    return render(
+        request,
+        "errors/500.html",
+        status=500,
+    )

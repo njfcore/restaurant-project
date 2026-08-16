@@ -58,6 +58,7 @@ class OrderAdmin(admin.ModelAdmin):
         "id",
         "user",
         "status",
+        "order_type",
         "total_price",
         "created_at",
     )
