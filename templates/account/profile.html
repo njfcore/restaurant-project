@@ -273,6 +273,148 @@ My Profile | Bella Italia
 
         </section>
 
+        <section class="profile-reviews">
+
+            <div class="profile-reviews__header">
+
+                <div>
+
+                    <span class="profile-reviews__subtitle">
+                        MY REVIEWS
+                    </span>
+
+                    <h2 class="profile-reviews__title">
+                        Your Recent Reviews
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            {% if reviews %}
+
+            <div class="food-reviews__list">
+
+                {% for review in reviews %}
+
+                <article class="review-item">
+
+                    <div class="review-item__header">
+
+                        <div class="review-item__user">
+
+                            <div class="review-item__avatar">
+                                {{ review.food.name|first|upper }}
+                            </div>
+
+                            <div class="review-item__user-info">
+
+                                <h3 class="review-item__username">
+                                    {{ review.food.name }}
+                                </h3>
+
+                                <span class="review-item__date">
+                                    {{ review.created_at|date:"F d, Y" }}
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="review-item__rating">
+
+                            {% for star in "12345" %}
+
+                            {% if forloop.counter <= review.rating %} <span
+                                class="review-item__star review-item__star--active">
+                                ★
+                                </span>
+
+                                {% else %}
+
+                                <span class="review-item__star">
+                                    ☆
+                                </span>
+
+                                {% endif %}
+
+                                {% endfor %}
+
+                        </div>
+
+                        <div class="review-item__actions">
+
+                            <button type="button" class="review-item__menu-button" aria-label="Review options"
+                                aria-expanded="false">
+                                <i class="bi bi-three-dots-vertical"></i>
+                            </button>
+
+
+                            <div class="review-item__menu">
+
+                                <a href="{% url 'review:edit' review.food.id %}" class="review-item__menu-link">
+                                    <i class="bi bi-pencil-square"></i>
+                                    Edit Review
+                                </a>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="review-item__content">
+
+                        <p>
+                            {{ review.comment }}
+                        </p>
+
+                    </div>
+
+
+                    <div class="review-item__footer">
+
+                        <span class="review-item__verified">
+
+                            <i class="bi bi-patch-check-fill"></i>
+
+                            Verified Purchase
+
+                        </span>
+
+                    </div>
+
+                </article>
+
+                {% endfor %}
+
+            </div>
+
+            {% else %}
+
+            <div class="profile-reviews__empty">
+
+                <div class="profile-reviews__empty-icon">
+                    <i class="bi bi-chat-square-text"></i>
+                </div>
+
+                <h3>
+                    No Reviews Yet
+                </h3>
+
+                <p>
+                    Your approved reviews will appear here once you share your experience.
+                </p>
+
+            </div>
+
+            {% endif %}
+
+        </section>
+
     </div>
 
 </section>

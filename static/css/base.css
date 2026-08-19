@@ -181,3 +181,17 @@ section {
     overflow: hidden;
 
 }
+
+/* ==========================
+   PROFILE REVIEWS
+========================== */
+
+.profile-reviews__subtitle {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--color-primary);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 2.3px;
+    text-transform: uppercase;
+}

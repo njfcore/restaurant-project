@@ -405,6 +405,157 @@
     background: #111111;
 }
 
+/* =========================================================
+   Review Header Actions
+========================================================= */
+
+.review-item__header-actions {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+
+    flex-shrink: 0;
+}
+
+
+.review-item__actions {
+    position: relative;
+}
+
+
+.review-item__menu-button {
+    width: 32px;
+    height: 32px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0;
+
+    background: transparent;
+
+    border: 1px solid transparent;
+    border-radius: 6px;
+
+    color: #777777;
+
+    font-size: 1.1rem;
+
+    cursor: pointer;
+
+    transition:
+        color 0.2s ease,
+        background 0.2s ease,
+        border-color 0.2s ease;
+}
+
+
+.review-item__menu-button:hover {
+    color: var(--color-primary);
+
+    background: rgba(201, 162, 39, 0.08);
+
+    border-color: rgba(201, 162, 39, 0.15);
+}
+
+
+/* =========================================================
+   Review Menu
+========================================================= */
+
+.review-item__menu {
+    position: absolute;
+
+    top: calc(100% + 8px);
+    right: 0;
+
+    min-width: 145px;
+
+    padding: 6px;
+
+    z-index: 20;
+
+    background: #202020;
+
+    border: 1px solid rgba(255, 255, 255, 0.08);
+
+    border-radius: 8px;
+
+    box-shadow:
+        0 12px 30px rgba(0, 0, 0, 0.35);
+
+    opacity: 0;
+    visibility: hidden;
+
+    transform:
+        translateY(-8px)
+        scale(0.96);
+
+    transform-origin: top right;
+
+    transition:
+        opacity 0.2s ease,
+        visibility 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+.review-item__actions.is-open .review-item__menu {
+    opacity: 1;
+    visibility: visible;
+
+    transform:
+        translateY(0)
+        scale(1);
+}
+
+
+/* =========================================================
+   Edit Link
+========================================================= */
+
+.review-item__menu-link {
+    display: flex;
+    align-items: center;
+
+    gap: 9px;
+
+    width: 100%;
+
+    padding: 9px 11px;
+
+    color: #cccccc;
+
+    font-size: 0.75rem;
+    font-weight: 600;
+
+    text-decoration: none;
+
+    border-radius: 5px;
+
+    transition:
+        color 0.2s ease,
+        background 0.2s ease;
+}
+
+
+.review-item__menu-link i {
+    color: var(--color-primary);
+
+    font-size: 0.85rem;
+}
+
+
+.review-item__menu-link:hover {
+    color: #ffffff;
+
+    background: rgba(201, 162, 39, 0.08);
+}
+
 
 /* =========================================================
    Header

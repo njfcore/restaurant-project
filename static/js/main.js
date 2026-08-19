@@ -189,3 +189,63 @@ document.addEventListener("DOMContentLoaded", () => {
 //     updateStars(initialValue);
 
 // });
+
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    const reviewMenus = document.querySelectorAll(".review-item__actions");
+
+    reviewMenus.forEach((menu) => {
+
+        const button = menu.querySelector(".review-item__menu-button");
+
+        button.addEventListener("click", (event) => {
+
+            event.stopPropagation();
+
+            const isOpen = menu.classList.contains("is-open");
+
+            document
+                .querySelectorAll(".review-item__actions.is-open")
+                .forEach((openMenu) => {
+
+                    openMenu.classList.remove("is-open");
+
+                    const openButton =
+                        openMenu.querySelector(".review-item__menu-button");
+
+                    openButton.setAttribute("aria-expanded", "false");
+                });
+
+
+            if (!isOpen) {
+
+                menu.classList.add("is-open");
+
+                button.setAttribute("aria-expanded", "true");
+
+            }
+
+        });
+
+    });
+
+
+    document.addEventListener("click", () => {
+
+        document
+            .querySelectorAll(".review-item__actions.is-open")
+            .forEach((menu) => {
+
+                menu.classList.remove("is-open");
+
+                const button =
+                    menu.querySelector(".review-item__menu-button");
+
+                button.setAttribute("aria-expanded", "false");
+
+            });
+
+    });
+
+});

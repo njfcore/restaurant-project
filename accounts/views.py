@@ -99,10 +99,17 @@ def profile_view(request):
         "items__food"
     )[:5]
 
+    reviews = request.user.reviews.filter(
+        is_approved=True
+    ).select_related(
+        "food"
+    )[:5]
+
     return render(
         request,
         "account/profile.html",
         {
             "orders": orders,
+            "reviews": reviews,
         },
     )
