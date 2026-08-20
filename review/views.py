@@ -1,3 +1,5 @@
+import logging
+
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, redirect, render
@@ -8,6 +10,8 @@ from order.models import Order
 from .forms import ReviewForm
 from .models import Review
 from .services import has_completed_order
+
+logger = logging.getLogger("review")
 
 
 @login_required
@@ -56,6 +60,13 @@ def create_review(request, food_id):
             review.order = order
             review.save()
 
+            logger.info(
+                "Review created: review_id=%s food_id=%s user_id=%s",
+                review.id,
+                food.id,
+                request.user.id,
+            )
+
             messages.success(
                 request,
                 "Your review has been submitted successfully.",
@@ -95,6 +106,13 @@ def edit_review(request, food_id):
 
         if form.is_valid():
             form.save()
+
+            logger.info(
+                "Review updated: review_id=%s food_id=%s user_id=%s",
+                review.id,
+                food.id,
+                request.user.id,
+            )
 
             messages.success(
                 request,

@@ -1,3 +1,6 @@
+import logging
+
+
 from django.contrib.auth.decorators import login_required
 from django.db import transaction
 from django.shortcuts import get_object_or_404, redirect, render
@@ -6,6 +9,8 @@ from menu.models import Food
 
 from .forms import CheckoutForm
 from .models import Cart, CartItem, Order, OrderItem
+
+logger = logging.getLogger("order")
 
 
 @login_required
@@ -164,6 +169,12 @@ def checkout_view(request):
                     )
 
                 cart_items.delete()
+
+            logger.info(
+                "Order created: order_id=%s user_id=%s",
+                order.id,
+                request.user.id,
+            )
 
             return redirect(
                 "order:order_success",

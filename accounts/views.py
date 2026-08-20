@@ -1,3 +1,5 @@
+import logging
+
 from django.contrib import messages
 from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
@@ -5,6 +7,8 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.shortcuts import redirect, render
 
 from .forms import RegisterForm
+
+logger = logging.getLogger("accounts")
 
 
 def register_view(request):
@@ -21,6 +25,10 @@ def register_view(request):
             user = form.save()
 
             login(request, user)
+
+            logger.info(
+                f"User registered and logged in: user_id={user.id}"
+            )
 
             messages.success(
                 request,
@@ -60,12 +68,22 @@ def login_view(request):
 
             login(request, user)
 
+            logger.info(
+                f"User logged in: user_id={user.id}"
+            )
+
             messages.success(
                 request,
                 "Welcome back!",
             )
 
             return redirect("home")
+
+        else:
+
+            logger.warning(
+                f"Failed login attempt: username={request.POST.get("username")}"
+            )
 
     else:
 
@@ -81,6 +99,10 @@ def login_view(request):
 
 
 def logout_view(request):
+
+    logger.info(
+        f"User logged out: uesr_id={request.user.id}"
+    )
 
     logout(request)
 

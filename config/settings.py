@@ -152,3 +152,66 @@ LOGIN_URL = "account:login"
 LOGIN_REDIRECT_URL = "home"
 
 LOGOUT_REDIRECT_URL = "home"
+
+# =========================
+# Logging
+# =========================
+
+LOG_DIR = BASE_DIR / "logs"
+
+LOG_DIR.mkdir(exist_ok=True)
+
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+
+    "formatters": {
+        "verbose": {
+            "format": (
+                "{asctime} | {levelname} | "
+                "{name} | {message}"
+            ),
+            "style": "{",
+        },
+    },
+
+    "handlers": {
+        "console": {
+            "class": "logging.StreamHandler",
+            "formatter": "verbose",
+        },
+
+        "file": {
+            "class": "logging.FileHandler",
+            "filename": LOG_DIR / "django.log",
+            "formatter": "verbose",
+            "encoding": "utf-8",
+        },
+    },
+
+    "loggers": {
+    "django": {
+        "handlers": ["console", "file"],
+        "level": "INFO",
+        "propagate": False,
+    },
+
+    "order": {
+        "handlers": ["console", "file"],
+        "level": "INFO",
+        "propagate": False,
+    },
+
+    "review": {
+        "handlers": ["console", "file"],
+        "level": "INFO",
+        "propagate": False,
+    },
+
+    "accounts": {
+        "handlers": ["console", "file"],
+        "level": "INFO",
+        "propagate": False,
+    },
+},
+}
