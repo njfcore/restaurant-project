@@ -9,6 +9,7 @@ from menu.models import Food
 
 from .forms import CheckoutForm
 from .models import Cart, CartItem, Order, OrderItem
+from review.models import Review
 
 logger = logging.getLogger("order")
 
@@ -228,11 +229,29 @@ def order_detail(request, order_id):
         user=request.user,
     )
 
-    for item in order.items.all():
+    items = list(order.items.all())
+
+    for item in items:
         item.total_price = item.price * item.quantity
+
+    food_ids = [item.food_id for item in items]
+
+    reviews = Review.objects.filter(
+        user=request.user,
+        food_id__in=food_ids,
+    )
+
+    review_map = {
+        review.food_id: review
+        for review in reviews
+    }
+
+    for item in items:
+        item.user_review = review_map.get(item.food_id)
 
     context = {
         "order": order,
+        "items": items,
     }
 
     return render(

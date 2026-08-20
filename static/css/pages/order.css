@@ -373,6 +373,55 @@
     font-weight: 600;
 }
 
+/* =========================================================
+   ITEM SIDE
+========================================================= */
+
+.order-detail-item__side {
+    display: flex;
+    flex-direction: column;
+
+    align-items: flex-end;
+
+    gap: 10px;
+
+    flex-shrink: 0;
+}
+
+/* =========================================================
+   REVIEW LINK
+========================================================= */
+
+.order-detail-item__review-link {
+    display: inline-flex;
+    align-items: center;
+
+    gap: 6px;
+
+    color: rgba(255, 255, 255, 0.45);
+
+    font-size: 0.68rem;
+    font-weight: 600;
+
+    text-decoration: none;
+
+    white-space: nowrap;
+
+    transition:
+        color 0.25s ease,
+        transform 0.25s ease;
+}
+
+.order-detail-item__review-link:hover {
+    color: var(--color-primary);
+
+    transform: translateX(-2px);
+}
+
+.order-detail-item__review-link i {
+    font-size: 0.75rem;
+}
+
 
 /* =========================================================
    TOTAL
