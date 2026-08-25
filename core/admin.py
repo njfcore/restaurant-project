@@ -1,8 +1,10 @@
 from django.contrib import admin
+
+from common.admin import admin_site
+
 from .models import Restaurant
 
 
-@admin.register(Restaurant)
 class RestaurantAdmin(admin.ModelAdmin):
 
     list_display = (
@@ -20,7 +22,7 @@ class RestaurantAdmin(admin.ModelAdmin):
                     "name",
                     "slogan",
                     "story",
-                    "since"
+                    "since",
                 )
             },
         ),
@@ -69,9 +71,9 @@ class RestaurantAdmin(admin.ModelAdmin):
                 )
             },
         ),
-        
 
     )
+
     def has_add_permission(self, request):
 
         if Restaurant.objects.exists():
@@ -79,3 +81,9 @@ class RestaurantAdmin(admin.ModelAdmin):
             return False
 
         return True
+
+
+admin_site.register(
+    Restaurant,
+    RestaurantAdmin,
+)

@@ -1,10 +1,12 @@
 from django.contrib import admin
 from django.utils.html import format_html
 
+from common.admin import admin_site
+
 from .models import BlogCategory, Post
 
 
-@admin.register(BlogCategory)
+
 class BlogCategoryAdmin(admin.ModelAdmin):
 
     list_display = (
@@ -34,7 +36,7 @@ class BlogCategoryAdmin(admin.ModelAdmin):
     )
 
 
-@admin.register(Post)
+
 class PostAdmin(admin.ModelAdmin):
 
     list_display = (
@@ -131,3 +133,13 @@ class PostAdmin(admin.ModelAdmin):
             )
 
         return "No Image"
+
+admin_site.register(
+    Post,
+    PostAdmin
+)  
+
+admin_site.register(
+    BlogCategory,
+    BlogCategoryAdmin
+)  

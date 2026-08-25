@@ -1,9 +1,10 @@
 from django.contrib import admin
 
+from common.admin import admin_site
+
 from .models import Cart, CartItem, Order, OrderItem
 
 
-@admin.register(Cart)
 class CartAdmin(admin.ModelAdmin):
 
     list_display = (
@@ -24,7 +25,6 @@ class CartAdmin(admin.ModelAdmin):
     )
 
 
-@admin.register(CartItem)
 class CartItemAdmin(admin.ModelAdmin):
 
     list_display = (
@@ -51,7 +51,6 @@ class CartItemAdmin(admin.ModelAdmin):
     )
 
 
-@admin.register(Order)
 class OrderAdmin(admin.ModelAdmin):
 
     list_display = (
@@ -83,7 +82,6 @@ class OrderAdmin(admin.ModelAdmin):
     )
 
 
-@admin.register(OrderItem)
 class OrderItemAdmin(admin.ModelAdmin):
 
     list_display = (
@@ -109,3 +107,23 @@ class OrderItemAdmin(admin.ModelAdmin):
         "created_at",
         "updated_at",
     )
+
+admin_site.register(
+    Cart,
+    CartAdmin,
+)
+
+admin_site.register(
+    CartItem,
+    CartItemAdmin,
+)
+
+admin_site.register(
+    Order,
+    OrderAdmin,
+)
+
+admin_site.register(
+    OrderItem,
+    OrderItemAdmin,
+)

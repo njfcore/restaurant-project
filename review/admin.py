@@ -1,9 +1,10 @@
 from django.contrib import admin
 
+from common.admin import admin_site
+
 from .models import Review
 
 
-@admin.register(Review)
 class ReviewAdmin(admin.ModelAdmin):
 
     list_display = (
@@ -39,3 +40,8 @@ class ReviewAdmin(admin.ModelAdmin):
     ordering = (
         "-created_at",
     )
+
+admin_site.register(
+    Review,
+    ReviewAdmin
+)      

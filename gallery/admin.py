@@ -1,9 +1,10 @@
 from django.contrib import admin
 
+from common.admin import admin_site
+
 from .models import GalleryImage
 
 
-@admin.register(GalleryImage)
 class GalleryImageAdmin(admin.ModelAdmin):
 
     list_display = (
@@ -36,3 +37,8 @@ class GalleryImageAdmin(admin.ModelAdmin):
         "display_order",
         "-created_at",
     )
+
+admin_site.register(
+    GalleryImage,
+    GalleryImageAdmin
+)     

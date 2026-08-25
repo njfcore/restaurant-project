@@ -213,5 +213,11 @@ LOGGING = {
         "level": "INFO",
         "propagate": False,
     },
+
+    "admin": {
+        "handlers": ["console", "file"],
+        "level": "INFO",
+        "propagate": False,
+    }
 },
 }

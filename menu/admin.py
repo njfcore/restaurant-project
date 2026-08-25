@@ -1,11 +1,12 @@
 from django.contrib import admin
 from django.utils.html import format_html
 
+from common.admin import admin_site
+
 from .models import Category, Food
 
 
 
-@admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
     list_display = (
         "image_preview",
@@ -48,7 +49,6 @@ class CategoryAdmin(admin.ModelAdmin):
         return "-"
 
 
-@admin.register(Food)
 class FoodAdmin(admin.ModelAdmin):
     list_display = (
         "id",
@@ -106,3 +106,14 @@ class FoodAdmin(admin.ModelAdmin):
                 obj.image.url,
             )
         return "-"  
+
+admin_site.register(
+    Category,
+    CategoryAdmin,
+)
+
+admin_site.register(
+    Food,
+    FoodAdmin,
+)
+    

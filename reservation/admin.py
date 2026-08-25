@@ -1,9 +1,10 @@
 from django.contrib import admin
 
+from common.admin import admin_site
+
 from .models import Reservation
 
 
-@admin.register(Reservation)
 class ReservationAdmin(admin.ModelAdmin):
 
     list_display = (
@@ -30,3 +31,9 @@ class ReservationAdmin(admin.ModelAdmin):
         "-date",
         "-time",
     )
+
+admin_site.register(
+    Reservation,
+    ReservationAdmin,
+)
+

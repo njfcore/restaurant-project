@@ -1,9 +1,10 @@
 from django.contrib import admin
 
+from common.admin import admin_site
+
 from .models import ContactMessage
 
 
-@admin.register(ContactMessage)
 class ContactMessageAdmin(admin.ModelAdmin):
 
     list_display = (
@@ -29,3 +30,8 @@ class ContactMessageAdmin(admin.ModelAdmin):
     ordering = (
         "-created_at",
     )
+
+admin_site.register(
+    ContactMessage,
+    ContactMessageAdmin
+)      
