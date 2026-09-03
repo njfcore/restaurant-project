@@ -1,0 +1,127 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String        @id @default(cuid())
+  name         String
+  phone        String        @unique
+  email        String?       @unique
+  passwordHash String?
+  vipTier      String        @default("عضو نقره‌ای نورا و نوبل")
+  role         String        @default("CUSTOMER") // CUSTOMER, VIP, ADMIN
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+  reservations Reservation[]
+  orders       Order[]
+  reviews      Review[]
+}
+
+model Category {
+  id          String     @id
+  name        String
+  persianName String
+  sortOrder   Int        @default(0)
+  items       MenuItem[]
+}
+
+model MenuItem {
+  id             String      @id
+  name           String
+  persianName    String
+  categoryId     String
+  category       Category    @relation(fields: [categoryId], references: [id])
+  price          Int
+  priceFormatted String
+  description    String
+  image          String
+  tags           String?     // Stored as JSON string array
+  isSpecial      Boolean     @default(false)
+  calories       Int?
+  prepTime       String?
+  rating         Float       @default(4.9)
+  ingredients    String?     // Stored as JSON string array
+  available      Boolean     @default(true)
+  createdAt      DateTime    @default(now())
+  updatedAt      DateTime    @updatedAt
+  orderItems     OrderItem[]
+}
+
+model Reservation {
+  id              String   @id
+  userId          String?
+  user            User?    @relation(fields: [userId], references: [id])
+  name            String
+  phone           String
+  email           String?
+  guests          Int      @default(2)
+  date            String
+  time            String
+  seatingArea     String   @default("main") // main, vip, terrace, window
+  occasion        String?
+  specialRequests String?
+  status          String   @default("CONFIRMED") // PENDING, CONFIRMED, CANCELLED, COMPLETED
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
+
+model Order {
+  id            String      @id @default(cuid())
+  orderCode     String      @unique
+  userId        String?
+  user          User?       @relation(fields: [userId], references: [id])
+  customerName  String
+  phone         String
+  orderType     String      @default("dine_in") // dine_in, takeaway, delivery
+  status        String      @default("RECEIVED") // RECEIVED, PREPARING, READY, DELIVERED, CANCELLED
+  subtotal      Int
+  discount      Int         @default(0)
+  tax           Int         @default(0)
+  total         Int
+  couponCode    String?
+  notes         String?
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+  items         OrderItem[]
+}
+
+model OrderItem {
+  id         String   @id @default(cuid())
+  orderId    String
+  order      Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  menuItemId String
+  menuItem   MenuItem @relation(fields: [menuItemId], references: [id])
+  quantity   Int      @default(1)
+  unitPrice  Int
+  notes      String?
+}
+
+model ContactMessage {
+  id        String   @id @default(cuid())
+  name      String
+  phone     String
+  email     String?
+  message   String
+  status    String   @default("NEW") // NEW, READ, RESPONDED
+  createdAt DateTime @default(now())
+}
+
+model Review {
+  id        String   @id @default(cuid())
+  userId    String?
+  user      User?    @relation(fields: [userId], references: [id])
+  author    String
+  rating    Int      @default(5)
+  comment   String
+  date      String
+  approved  Boolean  @default(true)
+  createdAt DateTime @default(now())
+}

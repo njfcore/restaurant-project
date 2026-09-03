@@ -1,0 +1,248 @@
+@import "tailwindcss";
+
+/* 
+  اگر می‌خواهید فونت اختصاصی محلی خود را اضافه کنید:
+  فایل فونت را در مسیر public/fonts قرار داده و کامنت زیر را فعال کنید:
+*/
+
+/* @font-face {
+  font-family: "MyCustomFont";
+  src: url("/fonts/RuvenaItalic-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+} */
+
+@layer base {
+  :root {
+    --font-primary:
+      "Vazirmatn", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+      system-ui, sans-serif;
+    --font-cinzel: "Cinzel", serif;
+    --color-gold: #d4af37;
+    --color-gold-light: #f2ca50;
+    --color-dark-bg: #0d0d0d;
+    --color-surface: #131313;
+    --color-card: #1a1a1a;
+  }
+
+  /* اعمال فونت به کل ساختار صفحه و ورودی‌ها */
+  html,
+  body,
+  button,
+  input,
+  select,
+  textarea {
+    font-family: var(--font-primary);
+  }
+
+  body {
+    background-color: #0d0d0d;
+    color: #e5e2e1;
+    overflow-x: hidden;
+    direction: rtl;
+    transition:
+      background-color 0.3s ease,
+      color 0.3s ease;
+  }
+}
+
+/* فونت‌های اختصاصی برای عنوان‌های انگلیسی و المان‌های خاص */
+.font-cinzel {
+  font-family: var(--font-cinzel), serif;
+}
+
+.font-vazir {
+  font-family: var(--font-primary);
+}
+
+/* اسکرول‌بار اختصاصی */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0d0d0d;
+}
+
+.light ::-webkit-scrollbar-track {
+  background: #f1ede4;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #2a2a2a;
+  border-radius: 9999px;
+}
+
+.light ::-webkit-scrollbar-thumb {
+  background: #d4c7b5;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #d4af37;
+}
+
+/* افکت ناوبری بلور شیشه‌ای */
+.glass-nav {
+  background: rgba(19, 19, 19, 0.85);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.light .glass-nav {
+  background: rgba(251, 249, 245, 0.92);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-color: rgba(220, 210, 195, 0.8) !important;
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05) !important;
+}
+
+.gold-glow {
+  box-shadow: 0 0 25px -5px rgba(212, 175, 55, 0.2);
+}
+
+.gold-border-glow:hover {
+  border-color: rgba(212, 175, 55, 0.6);
+  box-shadow: 0 0 20px -5px rgba(212, 175, 55, 0.25);
+}
+
+/* ========================================================================= */
+/* استایل‌های حالت تم روشن (Light Mode)                                       */
+/* ========================================================================= */
+.light {
+  color-scheme: light;
+}
+
+/* پس‌زمینه‌های حالت روشن */
+.light .bg-\[\#0D0D0D\],
+.light .bg-\[\#0d0d0d\],
+.light .bg-\[\#0e0e0e\] {
+  background-color: #f8f6f0 !important;
+}
+
+.light .bg-\[\#0D0D0D\]\/90,
+.light .bg-\[\#0D0D0D\]\/95 {
+  background-color: rgba(248, 246, 240, 0.95) !important;
+}
+
+.light .bg-\[\#111\],
+.light .bg-\[\#121212\],
+.light .bg-\[\#131313\],
+.light .bg-\[\#141414\],
+.light .bg-\[\#161616\] {
+  background-color: #ffffff !important;
+}
+
+.light .bg-\[\#1a1a1a\],
+.light .bg-\[\#1a1a1a\]\/90,
+.light .bg-\[\#1e1e1e\],
+.light .bg-\[\#202020\],
+.light .bg-\[\#222\] {
+  background-color: #f3efe6 !important;
+}
+
+.light .bg-\[\#252525\],
+.light .bg-\[\#262626\],
+.light .bg-\[\#2a2a2a\],
+.light .bg-\[\#333\] {
+  background-color: #eae3d5 !important;
+}
+
+/* فیلدهای فرم در حالت روشن */
+.light input,
+.light select,
+.light textarea {
+  background-color: #ffffff !important;
+  color: #1c1917 !important;
+  border-color: #d8cdbb !important;
+}
+
+.light input::placeholder,
+.light textarea::placeholder {
+  color: #8c827a !important;
+}
+
+/* رنگ متون در حالت روشن */
+.light .text-\[\#e5e2e1\],
+.light .text-\[\#ffffff\],
+.light .text-white {
+  color: #1c1917 !important;
+}
+
+.light .text-\[\#c8c6c5\],
+.light .text-\[\#d0c5af\],
+.light .text-\[\#b0aba5\] {
+  color: #44403c !important;
+}
+
+.light .text-\[\#a09e9c\],
+.light .text-\[\#999\],
+.light .text-\[\#99907c\],
+.light .text-\[\#888\] {
+  color: #78716c !important;
+}
+
+.light .text-\[\#f2ca50\] {
+  color: #996515 !important;
+}
+
+/* حفظ کنتراست دکمه‌های طلایی */
+.light .bg-\[\#d4af37\] .text-\[\#0D0D0D\],
+.light .bg-\[\#d4af37\] .text-\[\#131313\],
+.light .bg-\[\#f2ca50\] .text-\[\#0D0D0D\],
+.light button.bg-\[\#d4af37\],
+.light .bg-\[\#d4af37\] {
+  color: #1a1608 !important;
+}
+
+/* بوردرها در حالت روشن */
+.light .border-\[\#1f1f1f\],
+.light .border-\[\#262626\],
+.light .border-\[\#262626\]\/80,
+.light .border-\[\#2a2a2a\],
+.light .border-\[\#2a2a2a\]\/80,
+.light .border-\[\#2e2e2e\],
+.light .border-\[\#333\] {
+  border-color: #e2d9cc !important;
+}
+
+.light .border-\[\#d4af37\]\/30,
+.light .border-\[\#d4af37\]\/40 {
+  border-color: rgba(184, 134, 11, 0.4) !important;
+}
+
+/* سایه‌های نرم برای کارت‌ها */
+.light .bg-\[\#161616\],
+.light .bg-\[\#181818\],
+.light .bg-\[\#1a1a1a\] {
+  box-shadow: 0 4px 18px -2px rgba(90, 75, 50, 0.07);
+}
+
+/* گرادینت‌ها در حالت روشن */
+.light .bg-gradient-to-t.from-\[\#0D0D0D\] {
+  background-image: linear-gradient(
+    to top,
+    #f8f6f0,
+    rgba(248, 246, 240, 0.85),
+    rgba(248, 246, 240, 0.4)
+  ) !important;
+}
+
+.light .bg-gradient-to-b.from-\[\#0D0D0D\]\/90 {
+  background-image: linear-gradient(
+    to bottom,
+    rgba(248, 246, 240, 0.95),
+    rgba(248, 246, 240, 0.85),
+    #f8f6f0
+  ) !important;
+}
+
+.light .bg-gradient-to-t.from-\[\#181818\] {
+  background-image: linear-gradient(
+    to top,
+    #ffffff,
+    transparent,
+    transparent
+  ) !important;
+}

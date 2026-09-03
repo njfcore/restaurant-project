@@ -1,0 +1,6 @@
+{
+  "name": "Nour & Noble - Luxury Persian & Italian Gastronomy",
+  "description": "منوی آنلاین، رزرو میز و تجربه غذاخوری لوکس رستوران ایتالیایی نورا و نوبل با طراحی مدرن و پشتیبانی کامل فارسی (RTL)",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

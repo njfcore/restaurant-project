@@ -1,31 +1,8 @@
-# Virtual Environment
-venv/
-
-# Python
-__pycache__/
-*.py[cod]
-*$py.class
-
-# Django
-db.sqlite3
-media/
-
-# Environment
-.env
-
-# IDE
-.vscode/
-.idea/
-
-# OS
+node_modules/
+build/
+dist/
+coverage/
 .DS_Store
-Thumbs.db
-
-# Backup
-
-data_backup.json
-
-#logs
-
-logs/
 *.log
+.env*
+!.env.example
