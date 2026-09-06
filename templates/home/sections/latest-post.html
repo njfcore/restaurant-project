@@ -1,0 +1,88 @@
+{% load static %}
+
+<section class="latest-posts section">
+    <div class="container">
+
+        {% include "components/section_title.html" with subtitle="OUR BLOG" title="Latest From Our Blog" description="Discover stories, recipes, culinary inspiration, and everything behind the flavors of Bella Italia." %}
+
+        <div class="latest-posts__grid">
+
+            {% for post in latest_posts %}
+            <article class="blog-card">
+
+                <div class="blog-card__media">
+
+                    <a href="{{ post.get_absolute_url }}" class="blog-card__image">
+                        {% if post.image %}
+                        <img src="{{ post.image.url }}" alt="{{ post.title }}">
+                        {% else %}
+                        <img src="{% static 'images/blog/default.jpg' %}" alt="{{ post.title }}">
+                        {% endif %}
+                    </a>
+
+                    <div class="blog-card__date">
+                        <strong class="blog-card__day">
+                            {{ post.created_at|date:"d" }}
+                        </strong>
+
+                        <small class="blog-card__month">
+                            {{ post.created_at|date:"M" }}
+                        </small>
+                    </div>
+
+                </div>
+
+
+                <div class="blog-card__content">
+
+                    {% if post.category %}
+                    <div class="blog-card__category">
+                        {{ post.category.name }}
+                    </div>
+                    {% endif %}
+
+                    <h3 class="blog-card__title">
+                        <a href="{{ post.get_absolute_url }}">
+                            {{ post.title }}
+                        </a>
+                    </h3>
+
+                    {% if post.excerpt %}
+                    <p class="blog-card__excerpt">
+                        {{ post.excerpt|truncatewords:20 }}
+                    </p>
+                    {% elif post.content %}
+                    <p class="blog-card__excerpt">
+                        {{ post.content|striptags|truncatewords:20 }}
+                    </p>
+                    {% endif %}
+
+                    <a href="{% url 'blog:post_detail' post.slug %}" class="blog-card__link">
+                        Read More
+                    </a>
+
+                </div>
+
+            </article>
+
+            {% empty %}
+
+            <p class="latest-posts__empty">
+                No blog posts available yet.
+            </p>
+
+            {% endfor %}
+
+        </div>
+
+
+        {% if latest_posts %}
+        <div class="latest-posts__footer">
+            <a href="{% url 'blog:blog' %}" class="btn btn--outline">
+                View All Posts
+            </a>
+        </div>
+        {% endif %}
+
+    </div>
+</section>

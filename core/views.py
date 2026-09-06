@@ -3,6 +3,7 @@ from django.core.exceptions import PermissionDenied
 
 from menu.models import Category, Food
 from core.models import Restaurant
+from blog.models import Post
 
 def home_view(request):
 
@@ -25,10 +26,15 @@ def home_view(request):
         "name",
     )[:6]
 
+    latest_posts = Post.objects.filter(
+        is_published=True
+    ).order_by("-created_at")[:3]
+
     context = {
         "restaurant": restaurant,
         "categories": categories,
         "featured_foods": featured_foods,
+        "latest_posts": latest_posts
     }
 
     return render(

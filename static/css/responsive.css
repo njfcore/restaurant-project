@@ -1065,3 +1065,63 @@
         font-size: 1.7rem;
     }
 }
+
+/* ==========================================
+   Latest Posts
+========================================== */
+
+@media (max-width: 992px) {
+
+    .latest-posts {
+        padding: 100px 0;
+    }
+
+    .latest-posts__grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+
+@media (max-width: 768px) {
+
+    .latest-posts {
+        padding: 80px 0;
+    }
+
+    .latest-posts__grid {
+        grid-template-columns: 1fr;
+        gap: 25px;
+        margin-top: 45px;
+    }
+
+    .blog-card__image {
+        height: 280px;
+    }
+
+}
+
+
+@media (max-width: 480px) {
+
+    .latest-posts {
+        padding: 65px 0;
+    }
+
+    .blog-card__image {
+        height: 230px;
+    }
+
+    .blog-card__content {
+        padding: 25px 22px;
+    }
+
+    .blog-card__title {
+        font-size: 1.35rem;
+    }
+
+    .latest-posts__footer {
+        margin-top: 40px;
+    }
+
+}
